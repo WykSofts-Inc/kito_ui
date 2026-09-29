@@ -1,0 +1,24 @@
+name: kito_ui_toasts
+description: Polished toasts for Flutter — card, pill, banner, glass and island layouts, stacks that fan out, promise, progress and undo toasts.
+version: 0.1.0
+homepage: https://github.com/WykSofts-Inc/kito_ui
+repository: https://github.com/WykSofts-Inc/kito_ui/tree/main/packages/kito_ui_toasts
+issue_tracker: https://github.com/WykSofts-Inc/kito_ui/issues
+topics: [toast, snackbar, notifications, ui, widgets]
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+resolution: workspace
+
+dependencies:
+  clock: ^1.1.1
+  flutter:
+    sdk: flutter
+  kito_ui_core: ^0.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
