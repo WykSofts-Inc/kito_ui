@@ -76,6 +76,7 @@ class _KitoStatusDialogViewState extends State<KitoStatusDialogView>
   late final AnimationController _spin = AnimationController(
       vsync: this, duration: const Duration(milliseconds: 900));
   bool _started = false;
+  Timer? _drawIn;
 
   @override
   void didChangeDependencies() {
@@ -94,6 +95,7 @@ class _KitoStatusDialogViewState extends State<KitoStatusDialogView>
 
   void _animateIn() {
     final reduce = context.reduceMotion;
+    _drawIn?.cancel();
     _spin.stop();
     if (reduce) {
       _pop.value = 1;
@@ -105,14 +107,15 @@ class _KitoStatusDialogViewState extends State<KitoStatusDialogView>
     if (widget.state.kind == KitoStatusKind.pending) {
       _spin.repeat();
     } else {
-      Future<void>.delayed(const Duration(milliseconds: 100), () {
-        if (mounted) _draw.forward(from: 0);
-      });
+      // A timer rather than Future.delayed, so dispose can cancel it.
+      _drawIn = Timer(
+          const Duration(milliseconds: 100), () => _draw.forward(from: 0));
     }
   }
 
   @override
   void dispose() {
+    _drawIn?.cancel();
     _pop.dispose();
     _draw.dispose();
     _spin.dispose();
@@ -311,7 +314,8 @@ class KitoStatusDialogController {
 /// Shows blocking, animated status feedback for work with a real effect — a payment, a
 /// submitted form — where a toast would be the wrong weight. Returns a controller: call
 /// `update` with success or failure when the work resolves (those close by themselves after
-/// [autoDismissAfter]; pass null to keep them up), or `close`.
+/// [autoDismissAfter]; pass null to keep them up), or `close`. Pass `useRootNavigator: false`
+/// to show it inside a nested navigator.
 ///
 /// ```dart
 /// final status = showKitoStatusDialog(context,
@@ -354,6 +358,7 @@ KitoStatusDialogController showKitoStatusDialog(
 
 /// Runs [task] behind a status dialog: pending while it runs, then success or failure.
 /// Returns the task's result, or rethrows its error once the failure state is showing.
+/// `useRootNavigator: false` shows the dialog inside a nested navigator.
 Future<T> runWithKitoStatusDialog<T>(
   BuildContext context,
   Future<T> Function() task, {
@@ -361,10 +366,12 @@ Future<T> runWithKitoStatusDialog<T>(
   String? successMessage,
   String? failureMessage,
   Duration autoDismissAfter = const Duration(milliseconds: 1600),
+  bool useRootNavigator = true,
 }) async {
   final status = showKitoStatusDialog(context,
       state: KitoStatusDialogState.pending(pendingMessage),
-      autoDismissAfter: autoDismissAfter);
+      autoDismissAfter: autoDismissAfter,
+      useRootNavigator: useRootNavigator);
   try {
     final result = await task();
     status.update(KitoStatusDialogState.success(successMessage));

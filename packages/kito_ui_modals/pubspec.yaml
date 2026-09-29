@@ -1,6 +1,6 @@
 name: kito_ui_modals
 description: Custom bottom sheets with detents, alerts with confetti, action menus, tooltips, hero cards, status dialogs and slide-to-confirm for Flutter.
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/WykSofts-Inc/kito_ui
 repository: https://github.com/WykSofts-Inc/kito_ui/tree/main/packages/kito_ui_modals
 issue_tracker: https://github.com/WykSofts-Inc/kito_ui/issues

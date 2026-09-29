@@ -29,7 +29,8 @@ class KitoMenuAction {
 
 /// Shows a floating action sheet: a card of icon rows with an optional [title] and
 /// [message], and a separate Cancel card below it. Completes with the action picked (after
-/// running its `onPressed`), or null when cancelled.
+/// running its `onPressed`), or null when cancelled. Pass `useRootNavigator: false` to open it
+/// inside a nested navigator (a tab, a phone-frame preview).
 ///
 /// ```dart
 /// showKitoActionMenu(context, title: 'Profile photo', actions: [
@@ -44,9 +45,11 @@ Future<KitoMenuAction?> showKitoActionMenu(
   String? title,
   String? message,
   String cancelTitle = 'Cancel',
+  bool useRootNavigator = true,
 }) async {
   final picked = await showKitoSheet<KitoMenuAction>(
     context: context,
+    useRootNavigator: useRootNavigator,
     configuration: KitoSheetConfiguration(
       style: KitoSheetStyle.floating,
       showsGrabber: false,
