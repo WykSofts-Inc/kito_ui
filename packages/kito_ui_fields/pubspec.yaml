@@ -1,0 +1,24 @@
+name: kito_ui_fields
+description: Polished Flutter form fields — floating labels, password strength, phone with country picker, OTP boxes, currency, card, search and steppers.
+version: 0.1.0
+homepage: https://github.com/WykSofts-Inc/kito_ui
+repository: https://github.com/WykSofts-Inc/kito_ui/tree/main/packages/kito_ui_fields
+issue_tracker: https://github.com/WykSofts-Inc/kito_ui/issues
+topics: [forms, text-field, otp, phone, ui]
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+  kito_ui_core: ^0.1.0
+  kito_ui_validation: ^0.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0

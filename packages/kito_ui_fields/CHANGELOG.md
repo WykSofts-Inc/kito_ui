@@ -1,0 +1,3 @@
+## 0.1.0
+
+- First release: `KitoTextField` (outlined, filled, underlined, floating-label and plain styles; validation with `kito_ui_validation` rules, async rules, triggers and `KitoFormController`; Flutter `Form` support; clear button, success tick, counter, footer), `KitoTextArea`, `KitoPasswordField` with reveal, `KitoPasswordStrengthMeter` and `KitoFieldRequirementsChecklist`, `KitoPhoneField` with `KitoFieldCountryPicker` and 243 regions, `KitoFieldPhoneNumber`, `KitoCodeField` with paste and autofill, `KitoCodeResendButton`, `KitoCurrencyField`, `KitoStepperField`, `KitoCardNumberField`, `KitoCardExpiryField`, `KitoCardCvvField`, `KitoFieldSearchBar`, `KitoFieldMask` and digit and amount formatters, `KitoFieldShell` for custom fields, and `KitoFieldTheme`.
