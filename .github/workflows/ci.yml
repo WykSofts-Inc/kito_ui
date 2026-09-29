@@ -20,7 +20,8 @@ jobs:
         with:
           channel: stable
           cache: true
+      - run: dart pub global activate melos 7.8.2
       - run: flutter pub get
-      - run: dart run melos format:check
-      - run: dart run melos analyze
-      - run: dart run melos test
+      - run: melos run format:check
+      - run: melos run analyze
+      - run: melos run test

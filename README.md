@@ -34,9 +34,10 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full list of kits and the convent
 ## Developing
 
 ```sh
+dart pub global activate melos
 flutter pub get          # resolves the whole workspace
-dart run melos analyze
-dart run melos test
+melos run analyze
+melos run test
 ```
 
 ## License
