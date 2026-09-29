@@ -4,9 +4,10 @@ publish_to: none
 environment:
   sdk: ^3.11.0
 
-# Every package in the repo, picked up automatically. Add `- apps/*` once an app exists.
+# Every package and app in the repo, picked up automatically.
 workspace:
   - packages/*
+  - apps/*
 
 dev_dependencies:
   melos: ^7.0.0
