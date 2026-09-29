@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kito_devkit/app/settings.dart';
+import 'package:kito_devkit/app/toasts.dart';
 import 'package:kito_devkit/catalog/catalog.dart';
 import 'package:kito_devkit/main.dart';
 
@@ -20,7 +21,7 @@ void main() {
 
   testWidgets('search finds samples', (tester) async {
     await tester.pumpWidget(KitoDevKitApp(settings: AppSettings()));
-    await tester.enterText(find.byType(TextField), 'glass');
+    await tester.enterText(find.byType(TextField), 'frosted');
     await tester.pumpAndSettle();
     expect(find.text('Frosted glass'), findsWidgets);
   });
@@ -51,5 +52,16 @@ void main() {
   test('catalog search ranks title matches first', () {
     final hits = KitCatalog.searchSamples('spring');
     expect(hits.first.sample.title, 'Spring curve');
+  });
+
+  testWidgets('toasts show over the app from anywhere', (tester) async {
+    await tester.pumpWidget(KitoDevKitApp(settings: AppSettings()));
+    await tester.pump();
+    devKitToasts.success('Karibu, Wycliff N');
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 600));
+    expect(find.text('Karibu, Wycliff N'), findsOneWidget);
+    devKitToasts.dismissAll();
+    await tester.pump(const Duration(seconds: 1));
   });
 }

@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 
 import '../kits/buttons_gallery.dart';
 import '../kits/core_gallery.dart';
+import '../kits/empty_states_gallery.dart';
 import '../kits/fields_gallery.dart';
 import '../kits/haptics_gallery.dart';
 import '../kits/loaders_gallery.dart';
+import '../kits/toasts_gallery.dart';
 import '../kits/validation_gallery.dart';
 
 /// One sample: a live preview, the code behind it, and a line saying what it shows.
@@ -104,12 +106,12 @@ abstract final class KitCatalog {
     hapticsKit,
     fieldsKit,
     validationKit,
+    toastsKit,
+    emptyStatesKit,
   ];
 
   static const List<UpcomingKit> upcoming = [
-    UpcomingKit('Toasts', Icons.chat_bubble_rounded, KitCategory.feedback),
     UpcomingKit('Modals', Icons.web_asset_rounded, KitCategory.feedback),
-    UpcomingKit('Empty States', Icons.inbox_rounded, KitCategory.feedback),
     UpcomingKit(
         'Navigation', Icons.view_sidebar_rounded, KitCategory.navigation),
     UpcomingKit(
