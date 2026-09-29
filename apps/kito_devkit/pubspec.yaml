@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   kito_ui_buttons: ^0.1.0
+  kito_ui_calendar: ^0.1.0
   kito_ui_charts: ^0.1.0
   kito_ui_core: ^0.1.0
   kito_ui_empty_states: ^0.1.0
