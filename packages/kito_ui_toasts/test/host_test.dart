@@ -331,4 +331,23 @@ void main() {
     center.dismissAll();
     await tester.pumpAndSettle();
   });
+
+  testWidgets('an action button keeps its height in a tall parent',
+      (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: SizedBox(
+          height: 400,
+          child: Row(children: [
+            KitoToastActionButton(
+              action: KitoToastAction(label: 'Undo', onPressed: () {}),
+              color: Colors.red,
+              onPressed: () {},
+            ),
+          ]),
+        ),
+      ),
+    ));
+    expect(tester.getSize(find.byType(KitoToastActionButton)).height, 44);
+  });
 }

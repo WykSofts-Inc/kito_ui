@@ -387,6 +387,7 @@ class KitoToastActionButton extends StatelessWidget {
             constraints: const BoxConstraints(minWidth: 44, minHeight: 44),
             child: Center(
               widthFactor: 1,
+              heightFactor: 1,
               child: filled
                   ? DecoratedBox(
                       decoration: BoxDecoration(
