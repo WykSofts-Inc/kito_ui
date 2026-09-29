@@ -2,11 +2,11 @@ name: kito_ui_workspace
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.11.0
 
-# Every package and app in the repo. Add a new kit here when you create it.
+# Every package in the repo, picked up automatically. Add `- apps/*` once an app exists.
 workspace:
-  - packages/kito_ui_core
+  - packages/*
 
 dev_dependencies:
   melos: ^7.0.0
