@@ -50,6 +50,7 @@ Future<void> _settle(WidgetTester tester) async {
 }
 
 void main() {
+  _riseInLeavesNoTimers();
   group('KitoOnboardingMath', () {
     test('reduce motion swaps the big transitions for a fade', () {
       for (final t in [
@@ -440,5 +441,20 @@ void main() {
       await _settle(tester);
       expect(find.text('Solo'), findsOneWidget);
     });
+  });
+}
+
+void _riseInLeavesNoTimers() {
+  testWidgets('a page removed mid rise-in leaves no timer behind',
+      (tester) async {
+    await tester.pumpWidget(const MaterialApp(
+      home: Scaffold(
+        body: KitoOnboardingPageView(
+          page: KitoOnboardingPage(title: 'Karibu', message: 'Hello'),
+        ),
+      ),
+    ));
+    await tester.pump(const Duration(milliseconds: 10));
+    await tester.pumpWidget(const SizedBox());
   });
 }
