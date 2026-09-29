@@ -1,6 +1,6 @@
 name: kito_ui_onboarding
 description: Paged onboarding for Flutter with photo, gradient, card, split and illustrated layouts, animated indicators, transitions and permission steps.
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/WykSofts-Inc/kito_ui
 repository: https://github.com/WykSofts-Inc/kito_ui/tree/main/packages/kito_ui_onboarding
 issue_tracker: https://github.com/WykSofts-Inc/kito_ui/issues
