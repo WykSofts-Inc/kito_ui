@@ -18,7 +18,7 @@ final hapticsKit = KitEntry(
   sections: [
     KitSection('Semantic', Icons.touch_app_rounded, [
       KitSample(
-        title: 'Success',
+        title: 'Success haptic',
         subtitle: 'A light tap rising into a medium one — it went well.',
         code: '''await mpesa.send(to: amina, amount: 1500);
 KitoHaptics.success();''',
@@ -28,7 +28,7 @@ KitoHaptics.success();''',
             haptic: KitoHaptics.success),
       ),
       KitSample(
-        title: 'Warning',
+        title: 'Warning haptic',
         subtitle: 'Two even taps before something you can’t undo.',
         code: '''KitoHaptics.warning();
 showDialog(context: context, builder: (_) => const ConfirmDeleteDialog());''',
@@ -38,7 +38,7 @@ showDialog(context: context, builder: (_) => const ConfirmDeleteDialog());''',
             haptic: KitoHaptics.warning),
       ),
       KitSample(
-        title: 'Error',
+        title: 'Error haptic',
         subtitle: 'Three heavy taps — that didn’t work.',
         code: '''if (!pinIsCorrect) KitoHaptics.error();''',
         builder: (_) => const _Feel(
