@@ -79,7 +79,7 @@ KitoHaptics.impact(KitoHapticImpactStyle.heavy);''',
     ]),
     KitSection('Patterns', Icons.graphic_eq_rounded, [
       KitSample(
-        title: 'Presets',
+        title: 'Pattern presets',
         subtitle: 'Nine patterns — tap one to play it and watch the playhead.',
         code: '''KitoHaptics.play(KitoHapticPattern.heartbeat);
 // Also: successChime, ticks, rumble, knock, rampUp, rampDown, failure, nudge.''',

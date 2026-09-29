@@ -8,8 +8,10 @@ import '../kits/charts_gallery.dart';
 import '../kits/core_gallery.dart';
 import '../kits/empty_states_gallery.dart';
 import '../kits/fields_gallery.dart';
+import '../kits/formatting_gallery.dart';
 import '../kits/haptics_gallery.dart';
 import '../kits/loaders_gallery.dart';
+import '../kits/modals_gallery.dart';
 import '../kits/toasts_gallery.dart';
 import '../kits/validation_gallery.dart';
 
@@ -110,15 +112,15 @@ abstract final class KitCatalog {
     toastsKit,
     emptyStatesKit,
     chartsKit,
+    modalsKit,
+    formattingKit,
   ];
 
   static const List<UpcomingKit> upcoming = [
-    UpcomingKit('Modals', Icons.web_asset_rounded, KitCategory.feedback),
     UpcomingKit(
         'Navigation', Icons.view_sidebar_rounded, KitCategory.navigation),
     UpcomingKit(
         'Onboarding', Icons.auto_awesome_rounded, KitCategory.navigation),
-    UpcomingKit('Formatting', Icons.pin_rounded, KitCategory.data),
     UpcomingKit('Calendar', Icons.calendar_month_rounded, KitCategory.data),
     UpcomingKit(
         'Carousels', Icons.view_carousel_rounded, KitCategory.components),
