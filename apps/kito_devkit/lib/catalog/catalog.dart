@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 
 import '../kits/buttons_gallery.dart';
+import '../kits/calendar_gallery.dart';
 import '../kits/charts_gallery.dart';
 import '../kits/core_gallery.dart';
 import '../kits/empty_states_gallery.dart';
@@ -118,10 +119,10 @@ abstract final class KitCatalog {
     formattingKit,
     navigationKit,
     onboardingKit,
+    calendarKit,
   ];
 
   static const List<UpcomingKit> upcoming = [
-    UpcomingKit('Calendar', Icons.calendar_month_rounded, KitCategory.data),
     UpcomingKit(
         'Carousels', Icons.view_carousel_rounded, KitCategory.components),
     UpcomingKit('Chat', Icons.forum_rounded, KitCategory.communication),
