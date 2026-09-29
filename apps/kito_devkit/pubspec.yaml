@@ -14,9 +14,11 @@ dependencies:
     sdk: flutter
   kito_ui_buttons: ^0.1.0
   kito_ui_core: ^0.1.0
+  kito_ui_empty_states: ^0.1.0
   kito_ui_fields: ^0.1.0
   kito_ui_haptics: ^0.1.0
   kito_ui_loaders: ^0.1.0
+  kito_ui_toasts: ^0.1.0
   kito_ui_validation: ^0.1.0
 
 dev_dependencies:
