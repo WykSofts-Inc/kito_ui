@@ -7,7 +7,7 @@ import 'package:kito_ui_core/kito_ui_core.dart';
 /// A full-screen sample shown inside a phone-sized frame, with its own [Navigator] (so sheets,
 /// dialogs and pushed pages stay inside the frame) and an "Open full screen" button that pushes
 /// the same screen as a real route.
-class PhoneFrame extends StatelessWidget {
+class PhoneFrame extends StatefulWidget {
   const PhoneFrame({
     super.key,
     required this.builder,
@@ -23,7 +23,24 @@ class PhoneFrame extends StatelessWidget {
   final double height;
 
   @override
+  State<PhoneFrame> createState() => _PhoneFrameState();
+}
+
+class _PhoneFrameState extends State<PhoneFrame> {
+  // The frame's own navigator gets its own hero controller, so hero flights run inside it.
+  final _heroes = MaterialApp.createMaterialHeroController();
+
+  @override
+  void dispose() {
+    _heroes.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final width = widget.width;
+    final height = widget.height;
+    final builder = widget.builder;
     final theme = context.kito;
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -55,8 +72,11 @@ class PhoneFrame extends StatelessWidget {
                         viewPadding: const EdgeInsets.only(top: 12),
                         viewInsets: EdgeInsets.zero,
                       ),
-                      child: HeroControllerScope.none(
+                      child: HeroControllerScope(
+                        controller: _heroes,
                         child: Navigator(
+                          // A new screen gets a fresh navigator.
+                          key: ObjectKey(builder),
                           onGenerateRoute: (_) =>
                               MaterialPageRoute<void>(builder: builder),
                         ),
