@@ -1,0 +1,22 @@
+name: kito_ui_core
+description: Theme tokens, surfaces and motion shared by every Kito UI kit — colours, spacing, radii, typography, gradients, glass and glow.
+version: 0.1.0
+homepage: https://github.com/WykSofts-Inc/kito_ui
+repository: https://github.com/WykSofts-Inc/kito_ui/tree/main/packages/kito_ui_core
+issue_tracker: https://github.com/WykSofts-Inc/kito_ui/issues
+topics: [ui, theme, design-system, widgets]
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
