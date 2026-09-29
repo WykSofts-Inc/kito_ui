@@ -96,6 +96,10 @@ void main() {
       // The face is now the full-width header.
       expect(tester.getSize(find.byType(ColoredBox).last).width, 800);
 
+      final semantics = tester.ensureSemantics();
+      expect(tester.getSemantics(find.bySemanticsLabel('Close')),
+          isSemantics(label: 'Close', isButton: true, hasTapAction: true));
+      semantics.dispose();
       await tester.tap(find.bySemanticsLabel('Close'));
       await tester.pumpAndSettle();
       expect(find.text('The whole story'), findsNothing);
