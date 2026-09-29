@@ -1,6 +1,8 @@
 // Copyright © 2026 wyksoftsinc.com. All rights reserved.
 // Created by Wycliff Njenga on 29/09/2026.
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:kito_ui_core/kito_ui_core.dart';
 
@@ -279,21 +281,23 @@ class _KitoAlertCardState extends State<KitoAlertCard>
     with SingleTickerProviderStateMixin {
   late final AnimationController _badge = AnimationController(
       vsync: this, duration: const Duration(milliseconds: 650));
+  Timer? _popIn;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (context.reduceMotion) {
+      _popIn?.cancel();
       _badge.value = 1;
-    } else if (_badge.value == 0 && !_badge.isAnimating) {
-      Future<void>.delayed(const Duration(milliseconds: 80), () {
-        if (mounted) _badge.forward();
-      });
+    } else if (_badge.value == 0 && !_badge.isAnimating && _popIn == null) {
+      // A timer rather than Future.delayed, so dispose can cancel it.
+      _popIn = Timer(const Duration(milliseconds: 80), _badge.forward);
     }
   }
 
   @override
   void dispose() {
+    _popIn?.cancel();
     _badge.dispose();
     super.dispose();
   }
