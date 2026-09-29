@@ -21,6 +21,8 @@ dependencies:
   kito_ui_haptics: ^0.1.0
   kito_ui_loaders: ^0.1.0
   kito_ui_modals: ^0.1.0
+  kito_ui_navigation: ^0.1.0
+  kito_ui_onboarding: ^0.1.0
   kito_ui_toasts: ^0.1.0
   kito_ui_validation: ^0.1.0
 

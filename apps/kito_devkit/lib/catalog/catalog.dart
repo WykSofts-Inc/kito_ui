@@ -12,6 +12,8 @@ import '../kits/formatting_gallery.dart';
 import '../kits/haptics_gallery.dart';
 import '../kits/loaders_gallery.dart';
 import '../kits/modals_gallery.dart';
+import '../kits/navigation_gallery.dart';
+import '../kits/onboarding_gallery.dart';
 import '../kits/toasts_gallery.dart';
 import '../kits/validation_gallery.dart';
 
@@ -114,13 +116,11 @@ abstract final class KitCatalog {
     chartsKit,
     modalsKit,
     formattingKit,
+    navigationKit,
+    onboardingKit,
   ];
 
   static const List<UpcomingKit> upcoming = [
-    UpcomingKit(
-        'Navigation', Icons.view_sidebar_rounded, KitCategory.navigation),
-    UpcomingKit(
-        'Onboarding', Icons.auto_awesome_rounded, KitCategory.navigation),
     UpcomingKit('Calendar', Icons.calendar_month_rounded, KitCategory.data),
     UpcomingKit(
         'Carousels', Icons.view_carousel_rounded, KitCategory.components),
