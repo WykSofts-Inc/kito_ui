@@ -85,6 +85,7 @@ class _KitoModalTapTargetState extends State<KitoModalTapTarget> {
         enabled: enabled,
         label: widget.semanticLabel,
         hint: widget.semanticHint,
+        onTap: widget.onTap,
         excludeSemantics: widget.semanticLabel != null,
         child: FocusableActionDetector(
           enabled: enabled,
@@ -96,6 +97,7 @@ class _KitoModalTapTargetState extends State<KitoModalTapTarget> {
           },
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
+            excludeFromSemantics: true,
             onTap: widget.onTap,
             onTapDown: (_) => _setPressed(true),
             onTapUp: (_) => _setPressed(false),
