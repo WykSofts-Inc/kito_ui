@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 
 import '../kits/buttons_gallery.dart';
 import '../kits/core_gallery.dart';
+import '../kits/fields_gallery.dart';
 import '../kits/haptics_gallery.dart';
 import '../kits/loaders_gallery.dart';
+import '../kits/validation_gallery.dart';
 
 /// One sample: a live preview, the code behind it, and a line saying what it shows.
 class KitSample {
@@ -100,11 +102,11 @@ abstract final class KitCatalog {
     buttonsKit,
     loadersKit,
     hapticsKit,
+    fieldsKit,
+    validationKit,
   ];
 
   static const List<UpcomingKit> upcoming = [
-    UpcomingKit('Fields', Icons.text_fields_rounded, KitCategory.forms),
-    UpcomingKit('Validation', Icons.verified_rounded, KitCategory.forms),
     UpcomingKit('Toasts', Icons.chat_bubble_rounded, KitCategory.feedback),
     UpcomingKit('Modals', Icons.web_asset_rounded, KitCategory.feedback),
     UpcomingKit('Empty States', Icons.inbox_rounded, KitCategory.feedback),
