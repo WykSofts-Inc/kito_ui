@@ -93,6 +93,19 @@ void main() {
   });
 
   group('Drawer building blocks', () {
+    testWidgets('the sign-out arrow mirrors in RTL', (tester) async {
+      await tester.pumpWidget(testApp(
+          Scaffold(
+              body: KitoDrawerFooterButton(title: 'Sign out', onTap: () {})),
+          direction: TextDirection.rtl));
+      final flip = tester.widget<Transform>(find
+          .ancestor(
+              of: find.byIcon(Icons.logout_rounded),
+              matching: find.byType(Transform))
+          .first);
+      expect(flip.transform.entry(0, 0), -1);
+    });
+
     testWidgets('header, items, sections, tiles and footer render and tap',
         (tester) async {
       final tapped = <String>[];
