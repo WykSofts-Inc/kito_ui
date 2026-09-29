@@ -162,6 +162,27 @@ void main() {
       expect(changes, [1, 2]);
     });
 
+    testWidgets('jumping several pages reports only where it lands',
+        (tester) async {
+      final c = KitoOnboardingController();
+      final changes = <int>[];
+      await tester.pumpWidget(_app(KitoOnboarding(
+        pages: _pages,
+        controller: c,
+        onFinish: () {},
+        onPageChanged: changes.add,
+      )));
+      await _settle(tester);
+      c.goTo(2);
+      await _settle(tester);
+      expect(changes, [2]);
+      expect(c.page, 2);
+      c.goTo(0);
+      await _settle(tester);
+      expect(changes, [2, 0]);
+      expect(c.page, 0);
+    });
+
     testWidgets('swiping moves pages, and mirrors in RTL', (tester) async {
       for (final rtl in [false, true]) {
         final c = KitoOnboardingController();

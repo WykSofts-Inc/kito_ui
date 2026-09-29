@@ -77,6 +77,10 @@ class _KitoOnboardingState extends State<KitoOnboarding> {
   bool _busy = false;
   int _lastReported = -1;
 
+  /// The page a programmatic jump is animating to. While it runs, the pages it passes on the
+  /// way are not reported (goTo(2) from page 0 would otherwise report 2, then 1, then 2).
+  int? _animatingTo;
+
   KitoOnboardingStyle get _style => widget.style;
 
   @override
@@ -129,10 +133,25 @@ class _KitoOnboardingState extends State<KitoOnboarding> {
     if (context.reduceMotion) {
       _pager.jumpToPage(page);
     } else {
-      _pager.animateToPage(page,
-          duration: const Duration(milliseconds: 520),
-          curve: Curves.easeInOutCubic);
+      _animatingTo = page;
+      _pager
+          .animateToPage(page,
+              duration: const Duration(milliseconds: 520),
+              curve: Curves.easeInOutCubic)
+          .whenComplete(() {
+        if (_animatingTo == page) _animatingTo = null;
+      });
     }
+  }
+
+  /// The pager reports each page it settles on; ignore the ones a jump passes through.
+  void _pagerChanged(int page) {
+    final target = _animatingTo;
+    if (target != null) {
+      if (page != target) return;
+      _animatingTo = null;
+    }
+    _controller.settle(page);
   }
 
   // Colours
@@ -211,7 +230,7 @@ class _KitoOnboardingState extends State<KitoOnboarding> {
     final pager = PageView.builder(
       controller: _pager,
       itemCount: widget.pages.length,
-      onPageChanged: _controller.settle,
+      onPageChanged: _pagerChanged,
       itemBuilder: (context, index) => AnimatedBuilder(
         animation: _pager,
         builder: (context, child) {
