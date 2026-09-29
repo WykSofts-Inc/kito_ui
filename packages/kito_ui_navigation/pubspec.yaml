@@ -1,0 +1,23 @@
+name: kito_ui_navigation
+description: Animated tab bars in nine styles, side menus with six transitions and drawer building blocks, top tabs and a typed router for Flutter.
+version: 0.1.0
+homepage: https://github.com/WykSofts-Inc/kito_ui
+repository: https://github.com/WykSofts-Inc/kito_ui/tree/main/packages/kito_ui_navigation
+issue_tracker: https://github.com/WykSofts-Inc/kito_ui/issues
+topics: [ui, navigation, tab-bar, drawer, router]
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+  kito_ui_core: ^0.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
