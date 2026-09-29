@@ -1,6 +1,7 @@
 // Copyright © 2026 wyksoftsinc.com. All rights reserved.
 // Created by Wycliff Njenga on 29/09/2026.
 
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -390,7 +391,7 @@ class _KitoOnboardingRiseInState extends State<KitoOnboardingRiseIn>
     with SingleTickerProviderStateMixin {
   late final AnimationController _c = AnimationController(
       vsync: this, duration: const Duration(milliseconds: 550));
-  int _run = 0;
+  Timer? _delay;
 
   @override
   void initState() {
@@ -408,21 +409,21 @@ class _KitoOnboardingRiseInState extends State<KitoOnboardingRiseIn>
   }
 
   void _apply() {
-    final run = ++_run;
+    // A timer, not Future.delayed, so a newer state or dispose can cancel it.
+    _delay?.cancel();
     if (!widget.enabled) {
       _c.value = 1;
     } else if (!widget.visible) {
       _c.value = 0;
     } else {
-      Future<void>.delayed(
-          Duration(milliseconds: (widget.delay * 1000).round()), () {
-        if (mounted && run == _run) _c.forward(from: 0);
-      });
+      _delay = Timer(Duration(milliseconds: (widget.delay * 1000).round()),
+          () => _c.forward(from: 0));
     }
   }
 
   @override
   void dispose() {
+    _delay?.cancel();
     _c.dispose();
     super.dispose();
   }
