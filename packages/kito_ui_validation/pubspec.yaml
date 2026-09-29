@@ -1,0 +1,23 @@
+name: kito_ui_validation
+description: Composable validation rules, password scoring, async checks and form state for Flutter — works with Form, TextFormField and Kito fields.
+version: 0.1.0
+homepage: https://github.com/WykSofts-Inc/kito_ui
+repository: https://github.com/WykSofts-Inc/kito_ui/tree/main/packages/kito_ui_validation
+issue_tracker: https://github.com/WykSofts-Inc/kito_ui/issues
+topics: [validation, forms, password, ui]
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+resolution: workspace
+
+dependencies:
+  characters: ^1.3.0
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
