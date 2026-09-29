@@ -695,6 +695,7 @@ class KitoDrawerFooterButton extends StatelessWidget {
     required this.onTap,
     this.icon = Icons.logout_rounded,
     this.isDestructive = false,
+    this.flipsInRtl,
   });
 
   /// The title.
@@ -703,8 +704,12 @@ class KitoDrawerFooterButton extends StatelessWidget {
   /// Called on tap.
   final VoidCallback? onTap;
 
-  /// The icon; the default mirrors in RTL.
+  /// The icon.
   final IconData icon;
+
+  /// Mirrors the icon in right-to-left layouts, for directional icons. Null flips only the
+  /// default sign-out arrow.
+  final bool? flipsInRtl;
 
   /// Draws it in the danger colour.
   final bool isDestructive;
@@ -726,7 +731,11 @@ class KitoDrawerFooterButton extends StatelessWidget {
           shape: const StadiumBorder(),
         ),
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Icon(icon, size: 18, color: color),
+          Transform.flip(
+            flipX: context.isRtl &&
+                (flipsInRtl ?? identical(icon, Icons.logout_rounded)),
+            child: Icon(icon, size: 18, color: color),
+          ),
           const SizedBox(width: 8),
           Flexible(
             child: Text(title,
