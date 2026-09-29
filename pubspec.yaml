@@ -1,0 +1,27 @@
+name: kito_ui_workspace
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+# Every package and app in the repo. Add a new kit here when you create it.
+workspace: []
+
+dev_dependencies:
+  melos: ^7.0.0
+
+melos:
+  repository: https://github.com/WykSofts-Inc/kito_ui
+  scripts:
+    analyze:
+      run: melos exec -- flutter analyze --fatal-infos
+      description: Analyse every package.
+    test:
+      run: melos exec --dir-exists=test -- flutter test
+      description: Run every package's tests.
+    format:
+      run: dart format .
+      description: Format the repo.
+    format:check:
+      run: dart format --output=none --set-exit-if-changed .
+      description: Fail if anything isn't formatted.

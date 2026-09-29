@@ -1,0 +1,13 @@
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec_overrides.yaml
+*.iml
+.idea/
+.vscode/
+.DS_Store
+coverage/
+# Apps keep their lock files; packages don't.
+packages/**/pubspec.lock
