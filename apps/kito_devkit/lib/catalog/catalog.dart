@@ -3,7 +3,10 @@
 
 import 'package:flutter/material.dart';
 
+import '../kits/buttons_gallery.dart';
 import '../kits/core_gallery.dart';
+import '../kits/haptics_gallery.dart';
+import '../kits/loaders_gallery.dart';
 
 /// One sample: a live preview, the code behind it, and a line saying what it shows.
 class KitSample {
@@ -92,17 +95,19 @@ class SampleHit {
 
 /// Every kit in the app. Add a kit's [KitEntry] here when its package lands.
 abstract final class KitCatalog {
-  static final List<KitEntry> kits = [coreKit];
+  static final List<KitEntry> kits = [
+    coreKit,
+    buttonsKit,
+    loadersKit,
+    hapticsKit,
+  ];
 
   static const List<UpcomingKit> upcoming = [
-    UpcomingKit('Buttons', Icons.touch_app_rounded, KitCategory.components),
     UpcomingKit('Fields', Icons.text_fields_rounded, KitCategory.forms),
     UpcomingKit('Validation', Icons.verified_rounded, KitCategory.forms),
     UpcomingKit('Toasts', Icons.chat_bubble_rounded, KitCategory.feedback),
-    UpcomingKit('Loaders', Icons.autorenew_rounded, KitCategory.feedback),
     UpcomingKit('Modals', Icons.web_asset_rounded, KitCategory.feedback),
     UpcomingKit('Empty States', Icons.inbox_rounded, KitCategory.feedback),
-    UpcomingKit('Haptics', Icons.vibration_rounded, KitCategory.feedback),
     UpcomingKit(
         'Navigation', Icons.view_sidebar_rounded, KitCategory.navigation),
     UpcomingKit(
