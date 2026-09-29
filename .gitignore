@@ -11,3 +11,6 @@ pubspec_overrides.yaml
 coverage/
 # Apps keep their lock files; packages don't.
 packages/**/pubspec.lock
+
+# The workspace lock file changes with every new kit; libraries don't commit it.
+/pubspec.lock
