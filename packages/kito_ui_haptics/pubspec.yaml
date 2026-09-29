@@ -1,0 +1,23 @@
+name: kito_ui_haptics
+description: Semantic haptics for Flutter — success, warning, error and selection, timed haptic patterns with presets, and a pattern visualizer widget.
+version: 0.1.0
+homepage: https://github.com/WykSofts-Inc/kito_ui
+repository: https://github.com/WykSofts-Inc/kito_ui/tree/main/packages/kito_ui_haptics
+issue_tracker: https://github.com/WykSofts-Inc/kito_ui/issues
+topics: [haptics, feedback, vibration, ui, accessibility]
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+  kito_ui_core: ^0.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
