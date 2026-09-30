@@ -1,0 +1,26 @@
+name: kito_ui_chat
+description: Chat UI for Flutter — grouped bubbles in four styles, read receipts, reactions, swipe to reply, voice notes, photos, a recording composer and an inbox.
+version: 0.1.0
+homepage: https://github.com/WykSofts-Inc/kito_ui
+repository: https://github.com/WykSofts-Inc/kito_ui/tree/main/packages/kito_ui_chat
+issue_tracker: https://github.com/WykSofts-Inc/kito_ui/issues
+topics: [ui, chat, messaging, widgets]
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: ">=0.19.0 <0.21.0"
+  kito_ui_core: ^0.1.0
+  kito_ui_formatting: ^0.1.0
+  kito_ui_loaders: ^0.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
