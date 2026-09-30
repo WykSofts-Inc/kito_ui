@@ -7,6 +7,7 @@ import 'package:kito_devkit/app/settings.dart';
 import 'package:kito_devkit/catalog/catalog.dart';
 import 'package:kito_devkit/gallery/gallery.dart';
 import 'package:kito_devkit/main.dart';
+import 'package:kito_ui_maps/kito_ui_maps.dart';
 
 /// Window sizes the app must lay out cleanly at: a small phone, a narrow
 /// desktop window, a tablet and a wide desktop window.
@@ -32,6 +33,9 @@ String _errors(WidgetTester tester) {
 }
 
 void main() {
+  // Maps in the galleries draw a plain backdrop instead of downloading tiles.
+  setUpAll(() => KitoMap.debugTilesOverride = const KitoMapTiles.none());
+
   testWidgets('home lays out at every window size', (tester) async {
     addTearDown(tester.view.reset);
     for (final size in _sizes) {
