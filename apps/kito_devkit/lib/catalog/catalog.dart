@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../kits/ai_chat_gallery.dart';
 import '../kits/buttons_gallery.dart';
 import '../kits/calendar_gallery.dart';
 import '../kits/carousel_gallery.dart';
@@ -22,6 +23,7 @@ import '../kits/onboarding_gallery.dart';
 import '../kits/scanner_gallery.dart';
 import '../kits/toasts_gallery.dart';
 import '../kits/validation_gallery.dart';
+import '../kits/wallet_cards_gallery.dart';
 
 /// One sample: a live preview, the code behind it, and a line saying what it shows.
 class KitSample {
@@ -130,14 +132,11 @@ abstract final class KitCatalog {
     mapsKit,
     scannerKit,
     chatKit,
+    aiChatKit,
+    walletCardsKit,
   ];
 
-  static const List<UpcomingKit> upcoming = [
-    UpcomingKit('AI Chat', Icons.auto_awesome_motion_rounded,
-        KitCategory.communication),
-    UpcomingKit(
-        'Wallet Cards', Icons.credit_card_rounded, KitCategory.commerce),
-  ];
+  static const List<UpcomingKit> upcoming = [];
 
   static int get sampleCount => kits.fold(0, (sum, k) => sum + k.sampleCount);
 
