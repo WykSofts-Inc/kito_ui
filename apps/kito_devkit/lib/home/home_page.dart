@@ -46,8 +46,9 @@ class _HomePageState extends State<HomePage> {
 
   void _open(KitEntry kit) {
     AppSettingsScope.of(context).remember(kit.title);
-    Navigator.of(context).push(
-        MaterialPageRoute<void>(builder: (_) => KitGalleryPage(kit: kit)));
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute<void>(builder: (_) => KitGalleryPage(kit: kit)));
   }
 
   void _surprise() {
@@ -77,8 +78,10 @@ class _HomePageState extends State<HomePage> {
                       sampleCount: KitCatalog.sampleCount,
                       onSurprise: _surprise,
                       onSettings: () => Navigator.of(context).push(
-                          MaterialPageRoute<void>(
-                              builder: (_) => const SettingsPage())),
+                        MaterialPageRoute<void>(
+                          builder: (_) => const SettingsPage(),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -108,8 +111,10 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> _home(BuildContext context) {
     final settings = AppSettingsScope.of(context);
-    final recent =
-        settings.recent.map(KitCatalog.byTitle).whereType<KitEntry>().toList();
+    final recent = settings.recent
+        .map(KitCatalog.byTitle)
+        .whereType<KitEntry>()
+        .toList();
     final newKits = KitCatalog.kits.where((k) => k.isNew).toList();
     final categories = KitCategory.values
         .where((c) => KitCatalog.kits.any((k) => k.category == c))
@@ -133,16 +138,19 @@ class _HomePageState extends State<HomePage> {
                 child: Opacity(
                   opacity: 1 - distance * 0.25,
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 8,
+                    ),
                     child: GestureDetector(
                       onTap: () => _open(kit),
                       child: HomeFeatureCard(
                         kit: kit,
-                        colors: _featureColors[kit.category.title] ??
+                        colors:
+                            _featureColors[kit.category.title] ??
                             [
                               kit.category.color.withValues(alpha: 0.9),
-                              const Color(0xFF311B92)
+                              const Color(0xFF311B92),
                             ],
                       ),
                     ),
@@ -155,8 +163,11 @@ class _HomePageState extends State<HomePage> {
       ),
       if (newKits.isNotEmpty) ...[
         _gap(24),
-        _header('New', Icons.auto_awesome_rounded,
-            trailing: '${newKits.length} kits'),
+        _header(
+          'New',
+          Icons.auto_awesome_rounded,
+          trailing: '${newKits.length} kits',
+        ),
         _strip([for (final k in newKits) _chipCard(k)]),
       ],
       if (recent.isNotEmpty) ...[
@@ -165,14 +176,18 @@ class _HomePageState extends State<HomePage> {
         _strip([for (final k in recent) _chipCard(k)]),
       ],
       _gap(24),
-      _header('Browse', Icons.grid_view_rounded,
-          trailing: '${KitCatalog.kits.length} kits'),
+      _header(
+        'Browse',
+        Icons.grid_view_rounded,
+        trailing: '${KitCatalog.kits.length} kits',
+      ),
       _gap(12),
       SliverToBoxAdapter(
         child: HomeCategoryChips(
-            categories: categories,
-            selected: _category,
-            onSelected: (c) => setState(() => _category = c)),
+          categories: categories,
+          selected: _category,
+          onSelected: (c) => setState(() => _category = c),
+        ),
       ),
       for (final category in shown) ...[
         if (_category == null)
@@ -186,9 +201,10 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     category.title.toUpperCase(),
                     style: context.kito.typography.caption.copyWith(
-                        color: category.color,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: 0.8),
+                      color: category.color,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 0.8,
+                    ),
                   ),
                 ],
               ),
@@ -204,19 +220,28 @@ class _HomePageState extends State<HomePage> {
             crossAxisSpacing: 12,
             childAspectRatio: 1.25,
             children: [
-              for (final kit
-                  in KitCatalog.kits.where((k) => k.category == category))
+              for (final kit in KitCatalog.kits.where(
+                (k) => k.category == category,
+              ))
                 KitoPressable(
-                    child: GestureDetector(
-                        onTap: () => _open(kit), child: HomeKitTile(kit: kit))),
+                  child: GestureDetector(
+                    onTap: () => _open(kit),
+                    child: HomeKitTile(kit: kit),
+                  ),
+                ),
             ],
           ),
         ),
       ],
-      _gap(28),
-      _header('Coming soon', Icons.hourglass_top_rounded,
-          trailing: '${KitCatalog.upcoming.length} kits'),
-      _strip([for (final k in KitCatalog.upcoming) HomeUpcomingTile(kit: k)]),
+      if (KitCatalog.upcoming.isNotEmpty) ...[
+        _gap(28),
+        _header(
+          'Coming soon',
+          Icons.hourglass_top_rounded,
+          trailing: '${KitCatalog.upcoming.length} kits',
+        ),
+        _strip([for (final k in KitCatalog.upcoming) HomeUpcomingTile(kit: k)]),
+      ],
       _gap(32),
       const SliverToBoxAdapter(child: _Footer()),
     ];
@@ -229,10 +254,11 @@ class _HomePageState extends State<HomePage> {
     if (kits.isEmpty && samples.isEmpty) {
       return [
         SliverToBoxAdapter(
-            child: GalleryNoResults(
-                query: _query,
-                hint:
-                    'Try a kit (“core”), a sample (“glass”) or a behaviour (“spring”).'))
+          child: GalleryNoResults(
+            query: _query,
+            hint: 'Try a kit (“core”), a sample (“glass”) or a behaviour (“spring”).',
+          ),
+        ),
       ];
     }
     return [
@@ -250,15 +276,19 @@ class _HomePageState extends State<HomePage> {
             children: [
               for (final k in kits)
                 GestureDetector(
-                    onTap: () => _open(k), child: HomeKitTile(kit: k))
+                  onTap: () => _open(k),
+                  child: HomeKitTile(kit: k),
+                ),
             ],
           ),
         ),
       ],
       if (samples.isNotEmpty) ...[
         _gap(20),
-        _header('${samples.length} sample${samples.length == 1 ? '' : 's'}',
-            Icons.auto_awesome_rounded),
+        _header(
+          '${samples.length} sample${samples.length == 1 ? '' : 's'}',
+          Icons.auto_awesome_rounded,
+        ),
         _gap(10),
         SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -271,21 +301,31 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     for (final hit in samples)
                       ListTile(
-                        leading:
-                            Icon(hit.kit.icon, color: hit.kit.category.color),
-                        title: Text(hit.sample.title,
-                            style: theme.typography.bodyEmphasized
-                                .copyWith(color: theme.colors.onSurface)),
+                        leading: Icon(
+                          hit.kit.icon,
+                          color: hit.kit.category.color,
+                        ),
+                        title: Text(
+                          hit.sample.title,
+                          style: theme.typography.bodyEmphasized.copyWith(
+                            color: theme.colors.onSurface,
+                          ),
+                        ),
                         subtitle: Text(
                           '${hit.kit.title} · ${hit.section.title}',
                           style: theme.typography.caption.copyWith(
-                              color: theme.colors.onSurface
-                                  .withValues(alpha: 0.55)),
+                            color: theme.colors.onSurface.withValues(
+                              alpha: 0.55,
+                            ),
+                          ),
                         ),
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute<void>(
-                              builder: (_) => SampleDetailPage(
-                                  kit: hit.kit, sample: hit.sample)),
+                            builder: (_) => SampleDetailPage(
+                              kit: hit.kit,
+                              sample: hit.sample,
+                            ),
+                          ),
                         ),
                       ),
                   ],
@@ -314,7 +354,9 @@ class _HomePageState extends State<HomePage> {
                 width: 36,
                 height: 36,
                 decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: kit.category.color),
+                  shape: BoxShape.circle,
+                  color: kit.category.color,
+                ),
                 child: Icon(kit.icon, size: 18, color: Colors.white),
               ),
               const SizedBox(width: 10),
@@ -322,14 +364,19 @@ class _HomePageState extends State<HomePage> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(kit.title,
-                      style: theme.typography.label.copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: theme.colors.onSurface)),
-                  Text('${kit.sampleCount} samples',
-                      style: theme.typography.caption.copyWith(
-                          color:
-                              theme.colors.onSurface.withValues(alpha: 0.55))),
+                  Text(
+                    kit.title,
+                    style: theme.typography.label.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: theme.colors.onSurface,
+                    ),
+                  ),
+                  Text(
+                    '${kit.sampleCount} samples',
+                    style: theme.typography.caption.copyWith(
+                      color: theme.colors.onSurface.withValues(alpha: 0.55),
+                    ),
+                  ),
                 ],
               ),
             ],
@@ -340,24 +387,28 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _strip(List<Widget> children) => SliverToBoxAdapter(
-        child: SizedBox(
-          height: 76,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-            itemCount: children.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 10),
-            itemBuilder: (_, i) => children[i],
-          ),
-        ),
-      );
+    child: SizedBox(
+      height: 76,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+        itemCount: children.length,
+        separatorBuilder: (_, __) => const SizedBox(width: 10),
+        itemBuilder: (_, i) => children[i],
+      ),
+    ),
+  );
 
   Widget _header(String title, IconData icon, {String? trailing}) =>
       SliverPadding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         sliver: SliverToBoxAdapter(
-            child: HomeSectionHeader(
-                title: title, icon: icon, trailing: trailing)),
+          child: HomeSectionHeader(
+            title: title,
+            icon: icon,
+            trailing: trailing,
+          ),
+        ),
       );
 
   Widget _gap(double height) =>
@@ -389,13 +440,13 @@ class _Backdrop extends StatelessWidget {
   }
 
   Widget _blob(Color color, double size) => Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient:
-                RadialGradient(colors: [color, color.withValues(alpha: 0)])),
-      );
+    width: size,
+    height: size,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      gradient: RadialGradient(colors: [color, color.withValues(alpha: 0)]),
+    ),
+  );
 }
 
 class _Footer extends StatelessWidget {
@@ -409,12 +460,17 @@ class _Footer extends StatelessWidget {
       children: [
         Icon(Icons.flutter_dash_rounded, color: theme.colors.primary, size: 28),
         const SizedBox(height: 6),
-        Text('Made in Nairobi with Flutter',
-            style: theme.typography.label.copyWith(
-                fontWeight: FontWeight.w600,
-                color: theme.colors.onBackground.withValues(alpha: 0.7))),
-        Text('wyksoftsinc.com · v1.0.0',
-            style: theme.typography.caption.copyWith(color: muted)),
+        Text(
+          'Made in Nairobi with Flutter',
+          style: theme.typography.label.copyWith(
+            fontWeight: FontWeight.w600,
+            color: theme.colors.onBackground.withValues(alpha: 0.7),
+          ),
+        ),
+        Text(
+          'wyksoftsinc.com · v1.0.0',
+          style: theme.typography.caption.copyWith(color: muted),
+        ),
       ],
     );
   }
