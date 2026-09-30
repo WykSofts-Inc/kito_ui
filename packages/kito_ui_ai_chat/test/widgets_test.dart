@@ -329,6 +329,16 @@ void main() {
     expect(find.text('No chats match “zzz”'), findsOneWidget);
   });
 
+  testWidgets('a long thinking label wraps instead of overflowing',
+      (tester) async {
+    await tester.pumpWidget(_page(const SizedBox(
+        width: 200,
+        child: KitoAiThinkingIndicator(
+            label: 'Reading your M-Pesa statement for September'))));
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('pieces build in RTL with reduced motion', (tester) async {
     await tester.pumpWidget(_page(
       SingleChildScrollView(

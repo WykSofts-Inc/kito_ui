@@ -338,10 +338,14 @@ class KitoAiThinkingIndicator extends StatelessWidget {
             KitoAiOrb(size: 22, tint: tint),
             SizedBox(width: theme.spacing.sm),
           ],
-          KitoAiShimmer(
-            child: Text('$label…',
-                style: theme.typography.label
-                    .copyWith(color: aiMuted(theme, 0.55))),
+          Flexible(
+            child: KitoAiShimmer(
+              child: Text('$label…',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.typography.label
+                      .copyWith(color: aiMuted(theme, 0.55))),
+            ),
           ),
         ],
       ),
