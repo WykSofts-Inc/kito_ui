@@ -6,6 +6,7 @@ import 'package:kito_ui_core/kito_ui_core.dart';
 import 'package:kito_ui_haptics/kito_ui_haptics.dart';
 
 import '../catalog/catalog.dart';
+import '../gallery/demo_width.dart';
 
 /// The gallery for kito_ui_haptics.
 final hapticsKit = KitEntry(
@@ -281,7 +282,7 @@ class _Switch extends StatefulWidget {
 
 class _SwitchState extends State<_Switch> {
   @override
-  Widget build(BuildContext context) => SizedBox(
+  Widget build(BuildContext context) => DemoWidth(
         width: 320,
         child: Material(
           type: MaterialType.transparency,
@@ -327,7 +328,7 @@ class _PlayerState extends State<_Player> {
   @override
   Widget build(BuildContext context) {
     final kito = context.kito;
-    return SizedBox(
+    return DemoWidth(
       width: 340,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -395,7 +396,7 @@ class _PresetsState extends State<_Presets> {
   @override
   Widget build(BuildContext context) {
     final kito = context.kito;
-    return SizedBox(
+    return DemoWidth(
       width: 340,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -441,7 +442,7 @@ class _TicksState extends State<_Ticks> {
   Widget build(BuildContext context) {
     final pattern = KitoHapticPattern.ticksOf(
         _count.round(), const Duration(milliseconds: 60));
-    return SizedBox(
+    return DemoWidth(
       width: 320,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         KitoHapticVisualizer(pattern, playedAt: _playedAt, height: 70),
@@ -472,7 +473,7 @@ class _ImpactList extends StatelessWidget {
   Widget build(BuildContext context) {
     final kito = context.kito;
     final impacts = KitoHapticPattern.successChime.impacts();
-    return SizedBox(
+    return DemoWidth(
       width: 300,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -526,7 +527,7 @@ class _DeliveredState extends State<_Delivered> {
     return KitoHapticOnChange(
       value: _delivered,
       pattern: KitoHapticPattern.successChime,
-      child: SizedBox(
+      child: DemoWidth(
         width: 320,
         child: KitoSurface(
           border: true,
@@ -588,7 +589,7 @@ class _FormErrorState extends State<_FormError> {
         value: _invalid,
         when: (before, now) => now,
         haptic: KitoHaptics.error,
-        child: SizedBox(
+        child: DemoWidth(
           width: 300,
           child: TextField(
             controller: _controller,
@@ -617,7 +618,7 @@ class _StopState extends State<_Stop> {
   DateTime? _playedAt;
 
   @override
-  Widget build(BuildContext context) => SizedBox(
+  Widget build(BuildContext context) => DemoWidth(
         width: 340,
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           KitoHapticVisualizer(_long,
@@ -625,25 +626,28 @@ class _StopState extends State<_Stop> {
               style: KitoHapticVisualizerStyle.waveform,
               height: 80),
           const SizedBox(height: 10),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            FilledButton.icon(
-              onPressed: () {
-                KitoHaptics.play(_long);
-                setState(() => _playedAt = DateTime.now());
-              },
-              icon: const Icon(Icons.play_arrow_rounded),
-              label: const Text('Rumble'),
-            ),
-            const SizedBox(width: 10),
-            OutlinedButton.icon(
-              onPressed: () {
-                KitoHaptics.stop();
-                setState(() => _playedAt = null);
-              },
-              icon: const Icon(Icons.stop_rounded),
-              label: const Text('Stop'),
-            ),
-          ]),
+          Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 10,
+              runSpacing: 8,
+              children: [
+                FilledButton.icon(
+                  onPressed: () {
+                    KitoHaptics.play(_long);
+                    setState(() => _playedAt = DateTime.now());
+                  },
+                  icon: const Icon(Icons.play_arrow_rounded),
+                  label: const Text('Rumble'),
+                ),
+                OutlinedButton.icon(
+                  onPressed: () {
+                    KitoHaptics.stop();
+                    setState(() => _playedAt = null);
+                  },
+                  icon: const Icon(Icons.stop_rounded),
+                  label: const Text('Stop'),
+                ),
+              ]),
         ]),
       );
 }

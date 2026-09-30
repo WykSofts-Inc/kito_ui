@@ -6,6 +6,7 @@ import 'package:kito_ui_core/kito_ui_core.dart';
 import 'package:kito_ui_navigation/kito_ui_navigation.dart';
 
 import '../catalog/catalog.dart';
+import '../gallery/demo_width.dart';
 import '../gallery/phone_frame.dart';
 
 /// The gallery for kito_ui_navigation.
@@ -522,7 +523,7 @@ class _BadgeBarState extends State<_BadgeBar> {
   }
 
   @override
-  Widget build(BuildContext context) => SizedBox(
+  Widget build(BuildContext context) => DemoWidth(
         width: 360,
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           KitoTabBar(controller: _tabs, style: KitoTabBarStyle.classic),
@@ -571,7 +572,7 @@ class _TopTabsState extends State<_TopTabs> {
   int _i = 0;
 
   @override
-  Widget build(BuildContext context) => SizedBox(
+  Widget build(BuildContext context) => DemoWidth(
         width: 360,
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           KitoTopTabs(
@@ -770,7 +771,7 @@ class _Panel extends StatelessWidget {
   final List<Widget> children;
 
   @override
-  Widget build(BuildContext context) => SizedBox(
+  Widget build(BuildContext context) => DemoWidth(
         width: 320,
         child: KitoSurface(
           border: true,
@@ -836,7 +837,7 @@ class _RowsAndRailState extends State<_RowsAndRail> {
   String _row = 'Inbox';
 
   @override
-  Widget build(BuildContext context) => SizedBox(
+  Widget build(BuildContext context) => DemoWidth(
         width: 340,
         child: KitoSurface(
           border: true,

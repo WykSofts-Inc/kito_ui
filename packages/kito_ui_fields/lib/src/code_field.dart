@@ -289,32 +289,37 @@ class _KitoCodeFieldState extends State<KitoCodeField>
           math.max(widget.minBoxWidth, math.min(widget.boxSize.width, perBox));
       final height = widget.boxSize.height *
           (width / widget.boxSize.width).clamp(0.8, 1.0);
-      return Directionality(
-        // Codes read left to right everywhere.
-        textDirection: TextDirection.ltr,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            for (var i = 0; i < widget.length; i++) ...[
-              if (i > 0) SizedBox(width: widget.spacing),
-              _box(kito, i, text, Size(width, height)),
-              if (boundaries.contains(i)) ...[
-                SizedBox(width: widget.spacing),
-                SizedBox(
-                  width: separatorWidth,
-                  child: Center(
-                    child: Container(
-                      width: 10,
-                      height: 2,
-                      decoration: BoxDecoration(
-                          color: kito.colors.onSurface.withValues(alpha: 0.3),
-                          borderRadius: BorderRadius.circular(1)),
+      // At the minimum box width a long code can still be wider than the
+      // space available; scale it down rather than overflow.
+      return FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Directionality(
+          // Codes read left to right everywhere.
+          textDirection: TextDirection.ltr,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (var i = 0; i < widget.length; i++) ...[
+                if (i > 0) SizedBox(width: widget.spacing),
+                _box(kito, i, text, Size(width, height)),
+                if (boundaries.contains(i)) ...[
+                  SizedBox(width: widget.spacing),
+                  SizedBox(
+                    width: separatorWidth,
+                    child: Center(
+                      child: Container(
+                        width: 10,
+                        height: 2,
+                        decoration: BoxDecoration(
+                            color: kito.colors.onSurface.withValues(alpha: 0.3),
+                            borderRadius: BorderRadius.circular(1)),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ],
             ],
-          ],
+          ),
         ),
       );
     });

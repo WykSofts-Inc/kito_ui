@@ -6,6 +6,7 @@ import 'package:kito_ui_core/kito_ui_core.dart';
 import 'package:kito_ui_modals/kito_ui_modals.dart';
 
 import '../catalog/catalog.dart';
+import '../gallery/demo_width.dart';
 import '../gallery/phone_frame.dart';
 
 /// The gallery for kito_ui_modals.
@@ -223,7 +224,7 @@ TextButton(onPressed: sheet.dismiss, child: const Text('Done'));''',
   ),
   onAction: (action) => ...,
 );''',
-        builder: (_) => SizedBox(
+        builder: (_) => DemoWidth(
           width: 320,
           child: KitoAlertCard(
             alert: const KitoAlert(
@@ -252,7 +253,7 @@ TextButton(onPressed: sheet.dismiss, child: const Text('Done'));''',
     KitoAlertAction.cancel('Not now'),
   ],
 );''',
-        builder: (_) => SizedBox(
+        builder: (_) => DemoWidth(
           width: 320,
           child: KitoAlertCard(
             alert: const KitoAlert(
@@ -408,7 +409,7 @@ if (await showKitoConfirmation(context,
   onPicked: handle,
   onCancel: close,
 );''',
-        builder: (_) => SizedBox(
+        builder: (_) => DemoWidth(
           width: 330,
           child: KitoActionMenuContent(
             title: 'Order #KE-2041',
@@ -502,7 +503,7 @@ try {
   resetAfter: const Duration(seconds: 2),
   onConfirm: () => mpesa.pay(2450),
 );''',
-        builder: (_) => SizedBox(
+        builder: (_) => DemoWidth(
           width: 330,
           child: KitoSlideToConfirm(
             title: 'Slide to pay KES 2,450',
@@ -522,7 +523,7 @@ try {
   failureTitle: 'Agent unavailable',
   onConfirm: () async => throw AgentUnavailable(),
 );''',
-        builder: (_) => SizedBox(
+        builder: (_) => DemoWidth(
           width: 330,
           child: KitoSlideToConfirm(
             title: 'Slide to withdraw',

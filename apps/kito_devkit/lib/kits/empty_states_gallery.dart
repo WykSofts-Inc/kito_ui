@@ -89,8 +89,8 @@ KitoEmptyStateIllustrationView(matatu, size: 200);''',
         subtitle: 'Recolour any preset to match your brand.',
         code:
             '''KitoEmptyStateIllustration.cart.tinted(const [Color(0xFF00A650), Color(0xFF006B3F)])''',
-        builder: (_) => Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        builder: (_) => Wrap(
+          alignment: WrapAlignment.center,
           children: [
             const KitoEmptyStateIllustrationView(_E.cart, size: 140),
             KitoEmptyStateIllustrationView(

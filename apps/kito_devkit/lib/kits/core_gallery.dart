@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:kito_ui_core/kito_ui_core.dart';
 
 import '../catalog/catalog.dart';
+import '../gallery/demo_width.dart';
 
 /// The gallery for kito_ui_core.
 final coreKit = KitEntry(
@@ -217,6 +218,8 @@ class _MiniScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style:
                   t.typography.headline.copyWith(color: t.colors.onBackground)),
           const SizedBox(height: 8),
@@ -233,6 +236,8 @@ class _MiniScreen extends StatelessWidget {
                 color: t.colors.primary,
                 borderRadius: BorderRadius.circular(99)),
             child: Text('Continue',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: t.typography.caption.copyWith(
                     color: t.colors.onPrimary, fontWeight: FontWeight.w700)),
           ),
@@ -344,25 +349,26 @@ class _SpacingRadii extends StatelessWidget {
     final radii = [t.radii.sm, t.radii.md, t.radii.lg, t.radii.xl, 32.0];
     return Column(
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.center,
+        Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          crossAxisAlignment: WrapCrossAlignment.end,
+          alignment: WrapAlignment.center,
           children: [
-            for (final s in steps) ...[
+            for (final s in steps)
               Container(width: s, height: s * 2, color: t.colors.primary),
-              const SizedBox(width: 10),
-            ],
           ],
         ),
         const SizedBox(height: 18),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          alignment: WrapAlignment.center,
           children: [
             for (final r in radii)
               Container(
                 width: 48,
                 height: 48,
-                margin: const EdgeInsets.symmetric(horizontal: 4),
                 decoration: BoxDecoration(
                     color: t.colors.surfaceMuted,
                     borderRadius: BorderRadius.circular(r),
@@ -536,7 +542,7 @@ class _PressState extends State<_Press> {
     return KitoPressable(
       child: GestureDetector(
         onTap: () => setState(() => _taps++),
-        child: SizedBox(
+        child: DemoWidth(
           width: 240,
           child: KitoSurface(
             background: const KitoBackground.gradient(KitoGradient.lagoon),
@@ -606,7 +612,7 @@ class _SpringState extends State<_Spring> {
     return GestureDetector(
       onTap: () => setState(() => _on = !_on),
       behavior: HitTestBehavior.opaque,
-      child: SizedBox(
+      child: DemoWidth(
         width: 280,
         child: Column(
           children: [
@@ -699,11 +705,12 @@ class _Rtl extends StatelessWidget {
             ),
           ),
         );
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Wrap(
+      spacing: 12,
+      runSpacing: 12,
+      alignment: WrapAlignment.center,
       children: [
         card(TextDirection.ltr, 'Continue'),
-        const SizedBox(width: 12),
         card(TextDirection.rtl, 'متابعة')
       ],
     );

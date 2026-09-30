@@ -6,6 +6,7 @@ import 'package:kito_ui_buttons/kito_ui_buttons.dart';
 import 'package:kito_ui_core/kito_ui_core.dart';
 
 import '../catalog/catalog.dart';
+import '../gallery/demo_width.dart';
 import '../gallery/phone_frame.dart';
 
 /// The gallery for kito_ui_buttons.
@@ -417,7 +418,7 @@ class _FullWidth extends StatelessWidget {
   const _FullWidth();
 
   @override
-  Widget build(BuildContext context) => SizedBox(
+  Widget build(BuildContext context) => DemoWidth(
         width: 340,
         child: _column([
           KitoButton(
@@ -638,7 +639,7 @@ class _WideCart extends StatelessWidget {
   const _WideCart();
 
   @override
-  Widget build(BuildContext context) => SizedBox(
+  Widget build(BuildContext context) => DemoWidth(
         width: 340,
         child: _column([
           KitoAddToCartButton(
@@ -675,13 +676,20 @@ class _ScrubberState extends State<_Scrubber> {
   Widget build(BuildContext context) {
     final kito = context.kito;
     return _column([
-      DropdownButton<KitoAddToCartAnimation>(
-        value: _a,
-        onChanged: (v) => setState(() => _a = v ?? _a),
-        items: [
-          for (final a in KitoAddToCartAnimation.values)
-            DropdownMenuItem(value: a, child: Text(a.title)),
-        ],
+      DemoWidth(
+        width: 280,
+        child: DropdownButton<KitoAddToCartAnimation>(
+          value: _a,
+          isExpanded: true,
+          onChanged: (v) => setState(() => _a = v ?? _a),
+          items: [
+            for (final a in KitoAddToCartAnimation.values)
+              DropdownMenuItem(
+                  value: a,
+                  child: Text(a.title,
+                      maxLines: 1, overflow: TextOverflow.ellipsis)),
+          ],
+        ),
       ),
       KitoAddToCartChoreography(
         progress: _p,
@@ -692,7 +700,7 @@ class _ScrubberState extends State<_Scrubber> {
             .colorsFor(KitoButtonVariant.primary, kito),
         successColor: kito.colors.success,
       ),
-      SizedBox(
+      DemoWidth(
         width: 280,
         child: Slider(
             value: _p,

@@ -67,9 +67,13 @@ class _KitGalleryPageState extends State<KitGalleryPage> {
                 children: [
                   Icon(section.icon, size: 18, color: kit.category.color),
                   const SizedBox(width: 8),
-                  Text(section.title,
-                      style: theme.typography.headline
-                          .copyWith(color: theme.colors.onBackground)),
+                  Flexible(
+                    child: Text(section.title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.typography.headline
+                            .copyWith(color: theme.colors.onBackground)),
+                  ),
                 ],
               ),
             ),
