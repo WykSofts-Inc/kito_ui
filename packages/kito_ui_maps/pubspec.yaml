@@ -1,0 +1,25 @@
+name: kito_ui_maps
+description: Themed OpenStreetMap maps for Flutter with flutter_map — pins, clusters, routes, a user-location puck, a place card and map controls. Opt-in native kit.
+version: 0.1.0
+homepage: https://github.com/WykSofts-Inc/kito_ui
+repository: https://github.com/WykSofts-Inc/kito_ui/tree/main/packages/kito_ui_maps
+issue_tracker: https://github.com/WykSofts-Inc/kito_ui/issues
+topics: [ui, maps, openstreetmap, flutter-map, widgets]
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_map: ^8.1.0
+  kito_ui_core: ^0.1.0
+  latlong2: ">=0.9.1 <0.11.0"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
