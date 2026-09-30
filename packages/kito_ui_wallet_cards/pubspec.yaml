@@ -1,0 +1,23 @@
+name: kito_ui_wallet_cards
+description: Payment cards and wallets for Flutter - brand detection, masked numbers, flip to CVV, glass faces, a wallet stack, carousel, deck, pocket, balance card and passes.
+version: 0.1.0
+homepage: https://github.com/WykSofts-Inc/kito_ui
+repository: https://github.com/WykSofts-Inc/kito_ui/tree/main/packages/kito_ui_wallet_cards
+issue_tracker: https://github.com/WykSofts-Inc/kito_ui/issues
+topics: [ui, wallet, payments, cards, widgets]
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+  kito_ui_core: ^0.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
