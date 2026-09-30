@@ -241,6 +241,15 @@ void main() {
     expect(find.text('••••••'), findsOneWidget);
   });
 
+  testWidgets('the pocket fits a narrow phone', (tester) async {
+    await tester.pumpWidget(_page(SizedBox(
+        width: 260,
+        child: KitoWalletPocket(
+            cards: _cards, isRevealed: false, onChanged: (_) {}))));
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('balance card hides the amount and runs actions', (tester) async {
     var hidden = false;
     var sent = 0;
