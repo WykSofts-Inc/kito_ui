@@ -119,7 +119,10 @@ class _Group extends StatelessWidget {
                   color: theme.colors.primary)),
         ),
         KitoSurface(
-            border: true, padding: const EdgeInsets.all(14), child: child),
+            border: true,
+            padding: const EdgeInsets.all(14),
+            // ListTiles need a Material under them to paint their ink.
+            child: Material(type: MaterialType.transparency, child: child)),
         if (footer != null)
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(4, 8, 4, 0),
