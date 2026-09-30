@@ -1,0 +1,23 @@
+name: kito_ui_ai_chat
+description: An AI chat UI for Flutter that works with any model - streaming markdown replies, code blocks, tool and source chips, a composer, a model picker and a conversation list.
+version: 0.1.0
+homepage: https://github.com/WykSofts-Inc/kito_ui
+repository: https://github.com/WykSofts-Inc/kito_ui/tree/main/packages/kito_ui_ai_chat
+issue_tracker: https://github.com/WykSofts-Inc/kito_ui/issues
+topics: [ui, chat, ai, markdown, widgets]
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+  kito_ui_core: ^0.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
