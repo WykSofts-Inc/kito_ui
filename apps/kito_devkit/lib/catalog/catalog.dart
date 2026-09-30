@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../kits/buttons_gallery.dart';
 import '../kits/calendar_gallery.dart';
+import '../kits/carousel_gallery.dart';
 import '../kits/charts_gallery.dart';
 import '../kits/chat_gallery.dart';
 import '../kits/checkout_gallery.dart';
@@ -124,6 +125,7 @@ abstract final class KitCatalog {
     navigationKit,
     onboardingKit,
     calendarKit,
+    carouselKit,
     checkoutKit,
     mapsKit,
     scannerKit,
@@ -131,8 +133,6 @@ abstract final class KitCatalog {
   ];
 
   static const List<UpcomingKit> upcoming = [
-    UpcomingKit(
-        'Carousels', Icons.view_carousel_rounded, KitCategory.components),
     UpcomingKit('AI Chat', Icons.auto_awesome_motion_rounded,
         KitCategory.communication),
     UpcomingKit(
