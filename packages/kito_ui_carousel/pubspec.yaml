@@ -1,0 +1,23 @@
+name: kito_ui_carousel
+description: Snapping carousels with 3D effects, page indicators, banners, a swipe deck, stacked cards, stories, a parallax header, vertical paging and a marquee for Flutter.
+version: 0.1.0
+homepage: https://github.com/WykSofts-Inc/kito_ui
+repository: https://github.com/WykSofts-Inc/kito_ui/tree/main/packages/kito_ui_carousel
+issue_tracker: https://github.com/WykSofts-Inc/kito_ui/issues
+topics: [ui, carousel, stories, swipe, widgets]
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+  kito_ui_core: ^0.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
