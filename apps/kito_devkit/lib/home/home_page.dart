@@ -111,10 +111,8 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> _home(BuildContext context) {
     final settings = AppSettingsScope.of(context);
-    final recent = settings.recent
-        .map(KitCatalog.byTitle)
-        .whereType<KitEntry>()
-        .toList();
+    final recent =
+        settings.recent.map(KitCatalog.byTitle).whereType<KitEntry>().toList();
     final newKits = KitCatalog.kits.where((k) => k.isNew).toList();
     final categories = KitCategory.values
         .where((c) => KitCatalog.kits.any((k) => k.category == c))
@@ -146,8 +144,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () => _open(kit),
                       child: HomeFeatureCard(
                         kit: kit,
-                        colors:
-                            _featureColors[kit.category.title] ??
+                        colors: _featureColors[kit.category.title] ??
                             [
                               kit.category.color.withValues(alpha: 0.9),
                               const Color(0xFF311B92),
@@ -198,12 +195,16 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Icon(category.icon, size: 14, color: category.color),
                   const SizedBox(width: 6),
-                  Text(
-                    category.title.toUpperCase(),
-                    style: context.kito.typography.caption.copyWith(
-                      color: category.color,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 0.8,
+                  Flexible(
+                    child: Text(
+                      category.title.toUpperCase(),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: context.kito.typography.caption.copyWith(
+                        color: category.color,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 0.8,
+                      ),
                     ),
                   ),
                 ],
@@ -214,12 +215,16 @@ class _HomePageState extends State<HomePage> {
           _gap(14),
         SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          sliver: SliverGrid.count(
-            crossAxisCount: 2,
-            mainAxisSpacing: 12,
-            crossAxisSpacing: 12,
-            childAspectRatio: 1.25,
-            children: [
+          sliver: SliverGrid(
+            // Tiles keep a fixed height and add columns as the window
+            // widens, so they never squash on narrow windows.
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 220,
+              mainAxisExtent: MediaQuery.textScalerOf(context).scale(132),
+              mainAxisSpacing: 12,
+              crossAxisSpacing: 12,
+            ),
+            delegate: SliverChildListDelegate([
               for (final kit in KitCatalog.kits.where(
                 (k) => k.category == category,
               ))
@@ -229,7 +234,7 @@ class _HomePageState extends State<HomePage> {
                     child: HomeKitTile(kit: kit),
                   ),
                 ),
-            ],
+            ]),
           ),
         ),
       ],
@@ -256,7 +261,8 @@ class _HomePageState extends State<HomePage> {
         SliverToBoxAdapter(
           child: GalleryNoResults(
             query: _query,
-            hint: 'Try a kit (“core”), a sample (“glass”) or a behaviour (“spring”).',
+            hint:
+                'Try a kit (“core”), a sample (“glass”) or a behaviour (“spring”).',
           ),
         ),
       ];
@@ -387,17 +393,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _strip(List<Widget> children) => SliverToBoxAdapter(
-    child: SizedBox(
-      height: 76,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-        itemCount: children.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 10),
-        itemBuilder: (_, i) => children[i],
-      ),
-    ),
-  );
+        child: SizedBox(
+          height: 76,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+            itemCount: children.length,
+            separatorBuilder: (_, __) => const SizedBox(width: 10),
+            itemBuilder: (_, i) => children[i],
+          ),
+        ),
+      );
 
   Widget _header(String title, IconData icon, {String? trailing}) =>
       SliverPadding(
@@ -440,13 +446,13 @@ class _Backdrop extends StatelessWidget {
   }
 
   Widget _blob(Color color, double size) => Container(
-    width: size,
-    height: size,
-    decoration: BoxDecoration(
-      shape: BoxShape.circle,
-      gradient: RadialGradient(colors: [color, color.withValues(alpha: 0)]),
-    ),
-  );
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: RadialGradient(colors: [color, color.withValues(alpha: 0)]),
+        ),
+      );
 }
 
 class _Footer extends StatelessWidget {

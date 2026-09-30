@@ -6,6 +6,7 @@ import 'package:kito_ui_core/kito_ui_core.dart';
 import 'package:kito_ui_onboarding/kito_ui_onboarding.dart';
 
 import '../catalog/catalog.dart';
+import '../gallery/demo_width.dart';
 import '../gallery/phone_frame.dart';
 
 /// The gallery for kito_ui_onboarding.
@@ -279,7 +280,7 @@ onboarding.next();    // back(), goTo(2), skip()''',
     ),
   ),
 );''',
-        builder: (_) => const SizedBox(
+        builder: (_) => const DemoWidth(
           width: 340,
           height: 440,
           child: KitoOnboardingPageView(
@@ -431,7 +432,7 @@ class _IndicatorsState extends State<_Indicators> {
   @override
   Widget build(BuildContext context) {
     final kito = context.kito;
-    return SizedBox(
+    return DemoWidth(
       width: 320,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         for (final s in KitoOnboardingIndicator.values)

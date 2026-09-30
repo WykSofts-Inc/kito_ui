@@ -348,33 +348,42 @@ class _KitoEmptyStateViewState extends State<KitoEmptyStateView>
         ),
       ),
       child: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(theme.spacing.lg),
-          child: Column(
-            children: [
-              const Spacer(),
-              if (media != null) _enter(0, media),
-              if (media != null) SizedBox(height: theme.spacing.lg),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: theme.spacing.md),
-                child: _enter(1, _texts(theme, TextAlign.center)),
-              ),
-              const Spacer(),
-              if (widget.actions.isNotEmpty)
-                _enter(
-                  2,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      for (var i = 0; i < widget.actions.length; i++) ...[
-                        if (i > 0) SizedBox(height: theme.spacing.sm),
-                        _KitoEmptyStateButton(action: widget.actions[i]),
-                      ],
-                    ],
-                  ),
+        // Fills the screen when there's room and scrolls on short screens.
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Padding(
+                padding: EdgeInsets.all(theme.spacing.lg),
+                child: Column(
+                  children: [
+                    const Spacer(),
+                    if (media != null) _enter(0, media),
+                    if (media != null) SizedBox(height: theme.spacing.lg),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: theme.spacing.md),
+                      child: _enter(1, _texts(theme, TextAlign.center)),
+                    ),
+                    const Spacer(),
+                    if (widget.actions.isNotEmpty)
+                      _enter(
+                        2,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            for (var i = 0; i < widget.actions.length; i++) ...[
+                              if (i > 0) SizedBox(height: theme.spacing.sm),
+                              _KitoEmptyStateButton(action: widget.actions[i]),
+                            ],
+                          ],
+                        ),
+                      ),
+                  ],
                 ),
-            ],
-          ),
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -6,6 +6,7 @@ import 'package:kito_ui_core/kito_ui_core.dart';
 import 'package:kito_ui_loaders/kito_ui_loaders.dart';
 
 import '../catalog/catalog.dart';
+import '../gallery/demo_width.dart';
 import '../gallery/phone_frame.dart';
 
 /// The gallery for kito_ui_loaders.
@@ -100,7 +101,7 @@ const KitoLoaderOrbit(size: 40, semanticLabel: 'Finding a rider near you');''',
         subtitle: 'Two segments chasing across the track.',
         code:
             '''const KitoLoaderLinearProgress(label: 'Syncing M-Pesa statements');''',
-        builder: (_) => const SizedBox(
+        builder: (_) => const DemoWidth(
             width: 300,
             child:
                 KitoLoaderLinearProgress(label: 'Syncing M-Pesa statements')),
@@ -123,7 +124,7 @@ const KitoLoaderOrbit(size: 40, semanticLabel: 'Finding a rider near you');''',
   stepFraction: 0.6,
   style: KitoLoaderStepStyle.segments,
 );''',
-        builder: (_) => const SizedBox(
+        builder: (_) => const DemoWidth(
           width: 320,
           child: KitoLoaderStepProgress(
             steps: [
@@ -145,7 +146,7 @@ const KitoLoaderOrbit(size: 40, semanticLabel: 'Finding a rider near you');''',
         subtitle: 'Avatars, lines and a pill, shimmering in one sweep.',
         code:
             '''const KitoLoaderSkeletonView(KitoLoaderSkeletonTemplate.listRow, count: 4);''',
-        builder: (_) => const SizedBox(
+        builder: (_) => const DemoWidth(
             width: 330,
             child: KitoLoaderSkeletonView(KitoLoaderSkeletonTemplate.listRow,
                 count: 4)),
@@ -156,7 +157,7 @@ const KitoLoaderOrbit(size: 40, semanticLabel: 'Finding a rider near you');''',
         code:
             '''const KitoLoaderSkeletonView(KitoLoaderSkeletonTemplate.feedPost);
 const KitoLoaderSkeletonView(KitoLoaderSkeletonTemplate.chat, count: 4);''',
-        builder: (_) => const SizedBox(
+        builder: (_) => const DemoWidth(
           width: 330,
           child: Column(children: [
             KitoLoaderSkeletonView(KitoLoaderSkeletonTemplate.feedPost),
@@ -170,7 +171,7 @@ const KitoLoaderSkeletonView(KitoLoaderSkeletonTemplate.chat, count: 4);''',
         subtitle: 'Two columns of tiles with captions.',
         code:
             '''const KitoLoaderSkeletonView(KitoLoaderSkeletonTemplate.grid, count: 2);''',
-        builder: (_) => const SizedBox(
+        builder: (_) => const DemoWidth(
             width: 330,
             child: KitoLoaderSkeletonView(KitoLoaderSkeletonTemplate.grid,
                 count: 2)),
@@ -410,7 +411,7 @@ class _RingState extends State<_Ring> {
         mainAxisSize: MainAxisSize.min,
         children: [
           KitoLoaderProgressRing(value: _v, size: 72, strokeWidth: 7),
-          SizedBox(
+          DemoWidth(
             width: 260,
             child: Slider(value: _v, onChanged: (v) => setState(() => _v = v)),
           ),
@@ -429,7 +430,7 @@ class _UploadBarState extends State<_UploadBar> {
   double _v = 0.64;
 
   @override
-  Widget build(BuildContext context) => SizedBox(
+  Widget build(BuildContext context) => DemoWidth(
         width: 300,
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -465,7 +466,7 @@ class _StepsState extends State<_Steps> {
   static const _names = ['Basket', 'Delivery', 'Payment', 'Done'];
 
   @override
-  Widget build(BuildContext context) => SizedBox(
+  Widget build(BuildContext context) => DemoWidth(
         width: 340,
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -539,7 +540,7 @@ class _RedactedState extends State<_Redacted> {
   Widget build(BuildContext context) {
     final kito = context.kito;
     return Column(mainAxisSize: MainAxisSize.min, children: [
-      SizedBox(
+      DemoWidth(
         width: 320,
         child: KitoLoaderRedacted(
           loading: _loading,

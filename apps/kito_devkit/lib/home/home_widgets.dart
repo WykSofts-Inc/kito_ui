@@ -200,11 +200,14 @@ class HomeSectionHeader extends StatelessWidget {
         children: [
           Icon(icon, size: 20, color: theme.colors.primary),
           const SizedBox(width: 8),
-          Text(title,
-              style: theme.typography.title
-                  .copyWith(fontSize: 20, color: theme.colors.onBackground)),
+          Expanded(
+            child: Text(title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: theme.typography.title
+                    .copyWith(fontSize: 20, color: theme.colors.onBackground)),
+          ),
           const SizedBox(width: 8),
-          const Spacer(),
           if (trailing != null)
             Text(trailing!,
                 style: theme.typography.caption.copyWith(
@@ -280,6 +283,8 @@ class HomeFeatureCard extends StatelessWidget {
                           letterSpacing: 1)),
                   const SizedBox(height: 4),
                   Text(kit.title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: theme.typography.title
                           .copyWith(fontSize: 28, color: Colors.white)),
                   const SizedBox(height: 4),
@@ -412,6 +417,8 @@ class HomeKitTile extends StatelessWidget {
                           .copyWith(color: theme.colors.onSurface)),
                   const SizedBox(height: 2),
                   Text('${kit.sampleCount} samples',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: theme.typography.caption.copyWith(
                           color:
                               theme.colors.onSurface.withValues(alpha: 0.55))),

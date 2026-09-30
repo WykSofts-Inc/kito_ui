@@ -6,6 +6,7 @@ import 'package:kito_ui_core/kito_ui_core.dart';
 import 'package:kito_ui_formatting/kito_ui_formatting.dart';
 
 import '../catalog/catalog.dart';
+import '../gallery/demo_width.dart';
 
 /// The gallery for kito_ui_formatting.
 final formattingKit = KitEntry(
@@ -291,7 +292,7 @@ class _Table extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final kito = context.kito;
-    return SizedBox(
+    return DemoWidth(
       width: 340,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -336,7 +337,7 @@ class _Statement extends StatelessWidget {
       ('Received from Otieno M', 2150.5),
       ('Fuliza repayment', -312.4),
     ];
-    return SizedBox(
+    return DemoWidth(
       width: 340,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         for (final (name, amount) in rows)
@@ -419,7 +420,7 @@ class _Currencies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final kito = context.kito;
-    return SizedBox(
+    return DemoWidth(
       width: 320,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         for (final c in KitoCurrency.values)
@@ -460,7 +461,7 @@ class _Leaderboard extends StatelessWidget {
       ('Kiprono T', 31400),
       ('Halima A', 28800),
     ];
-    return SizedBox(
+    return DemoWidth(
       width: 320,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         for (var i = 0; i < members.length; i++)
@@ -540,7 +541,7 @@ class _ChatList extends StatelessWidget {
       ('Landlord', 'Rent reminder', const Duration(days: 21)),
       ('Safari crew', 'Maasai Mara photos 📸', const Duration(days: 90)),
     ];
-    return SizedBox(
+    return DemoWidth(
       width: 330,
       child: Material(
         type: MaterialType.transparency,
@@ -569,7 +570,7 @@ class _DayLabels extends StatelessWidget {
   Widget build(BuildContext context) {
     final now = DateTime.now();
     final kito = context.kito;
-    return SizedBox(
+    return DemoWidth(
       width: 320,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -639,7 +640,7 @@ class _Downloads extends StatelessWidget {
       ('Chama minutes.docx', 38400, 38400),
       ('Safari video.mp4', 3456000000, 1200000000),
     ];
-    return SizedBox(
+    return DemoWidth(
       width: 330,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         for (final (name, total, got) in files)
@@ -731,7 +732,7 @@ class _PhoneFieldState extends State<_PhoneField> {
   @override
   Widget build(BuildContext context) {
     final phone = KitoKenyanPhoneNumber.tryParse(_controller.text);
-    return SizedBox(
+    return DemoWidth(
       width: 330,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         TextField(
@@ -775,7 +776,7 @@ class _Carriers extends StatelessWidget {
       '0772 987 654',
       '0760 111 222'
     ];
-    return SizedBox(
+    return DemoWidth(
       width: 330,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         for (final n in numbers)
@@ -892,7 +893,7 @@ class _Badges extends StatelessWidget {
             badge,
           ]),
         );
-    return SizedBox(
+    return DemoWidth(
       width: 320,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         row('Safaricom shares', const KitoFormattedChangeBadge(0.124)),
