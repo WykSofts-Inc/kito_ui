@@ -283,9 +283,13 @@ class KitoCheckoutAddressList extends StatelessWidget {
                     child: Row(children: [
                       Icon(Icons.add_location_alt_rounded, color: accent),
                       SizedBox(width: theme.spacing.sm),
-                      Text(addLabel,
-                          style: theme.typography.label.copyWith(
-                              color: accent, fontWeight: FontWeight.w700)),
+                      Flexible(
+                        child: Text(addLabel,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.typography.label.copyWith(
+                                color: accent, fontWeight: FontWeight.w700)),
+                      ),
                     ]),
                   ),
                 ),

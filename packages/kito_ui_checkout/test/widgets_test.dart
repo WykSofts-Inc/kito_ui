@@ -336,4 +336,32 @@ void main() {
     expect(tester.takeException(), isNull);
     expect(find.text('Order placed!'), findsOneWidget);
   });
+
+  testWidgets('narrow phones: progress, addresses and the total bar fit',
+      (tester) async {
+    tester.view.physicalSize = const Size(280, 800);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(testApp(Scaffold(
+      body: SingleChildScrollView(
+        child: Column(children: [
+          const KitoCheckoutProgress(current: KitoCheckoutStep.payment),
+          KitoCheckoutAddressList(
+            addresses: const [],
+            selected: null,
+            onChanged: (_) {},
+            onAdd: () {},
+          ),
+          KitoCheckoutTotalBar(
+            total: 24500000,
+            caption: 'Includes VAT · 4 items',
+            hint: 'Choose a delivery slot',
+            onPlaceOrder: () {},
+          ),
+        ]),
+      ),
+    )));
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+  });
 }

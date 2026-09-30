@@ -185,7 +185,7 @@ void main() {
     ));
     await tester.pump();
     expect(find.text('99+'), findsOneWidget);
-    expect(find.text(' (1200)'), findsOneWidget);
+    expect(find.textContaining('(1200)', findRichText: true), findsOneWidget);
     await tester.tap(find.text('Directions'));
     expect(directions, 1);
     expect(find.byTooltip('Call'), findsOneWidget);
@@ -199,5 +199,34 @@ void main() {
     expect(tiles.buildLayer(dark: false), isNotNull);
     expect(const KitoMapTiles.none().buildLayer(dark: false), isNull);
     expect(tiles.attribution, contains('OpenStreetMap'));
+  });
+
+  testWidgets('place card fits a narrow phone', (tester) async {
+    tester.view.physicalSize = const Size(300, 700);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(testApp(Scaffold(
+      body: ListView(children: [
+        KitoMapPlaceCard(
+          title: 'Carnivore',
+          subtitle: 'Nyama choma · Langata',
+          rating: 4.4,
+          reviewCount: 1200,
+          distance: '6.1 km',
+          onClose: () {},
+          actions: [
+            KitoMapPlaceAction(
+                icon: Icons.directions_rounded,
+                label: 'Directions',
+                isPrimary: true,
+                onPressed: () {}),
+            KitoMapPlaceAction(
+                icon: Icons.call_rounded, label: 'Call', onPressed: () {}),
+          ],
+        ),
+      ]),
+    )));
+    await tester.pump();
+    expect(tester.takeException(), isNull);
   });
 }

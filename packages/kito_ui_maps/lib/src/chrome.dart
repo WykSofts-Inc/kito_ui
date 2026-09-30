@@ -381,15 +381,22 @@ class KitoMapPlaceCard extends StatelessWidget {
                                     const Icon(Icons.star_rounded,
                                         size: 16, color: Color(0xFFFFB400)),
                                     const SizedBox(width: 2),
-                                    Text(rating!.toStringAsFixed(1),
-                                        style: theme.typography.caption
-                                            .copyWith(
-                                                color: theme.colors.onSurface,
-                                                fontWeight: FontWeight.w700)),
-                                    if (reviewCount != null)
-                                      Text(' ($reviewCount)',
-                                          style: theme.typography.caption
-                                              .copyWith(color: muted)),
+                                    Flexible(
+                                      child: Text.rich(
+                                        TextSpan(children: [
+                                          TextSpan(
+                                              text: rating!.toStringAsFixed(1),
+                                              style: TextStyle(
+                                                  color: theme.colors.onSurface,
+                                                  fontWeight: FontWeight.w700)),
+                                          if (reviewCount != null)
+                                            TextSpan(
+                                                text: ' ($reviewCount)',
+                                                style: TextStyle(color: muted)),
+                                        ]),
+                                        style: theme.typography.caption,
+                                      ),
+                                    ),
                                   ]),
                             ),
                           if (distance != null)

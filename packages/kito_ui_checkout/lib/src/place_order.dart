@@ -392,31 +392,41 @@ class KitoCheckoutTotalBar extends StatelessWidget {
                     ),
             ),
             Row(children: [
-              MergeSemantics(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Total',
-                        style: theme.typography.caption.copyWith(
-                            color: theme.colors.onSurface
-                                .withValues(alpha: 0.55))),
-                    CheckoutMoneyText(total,
-                        currencyCode: currencyCode,
-                        style: theme.typography.title.copyWith(
-                            color: theme.colors.onSurface,
-                            fontWeight: FontWeight.w800)),
-                    if (caption != null)
-                      Text(caption!,
+              Flexible(
+                flex: 2,
+                child: MergeSemantics(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Total',
                           style: theme.typography.caption.copyWith(
-                              fontSize: 11,
                               color: theme.colors.onSurface
-                                  .withValues(alpha: 0.5))),
-                  ],
+                                  .withValues(alpha: 0.55))),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment: AlignmentDirectional.centerStart,
+                        child: CheckoutMoneyText(total,
+                            currencyCode: currencyCode,
+                            style: theme.typography.title.copyWith(
+                                color: theme.colors.onSurface,
+                                fontWeight: FontWeight.w800)),
+                      ),
+                      if (caption != null)
+                        Text(caption!,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.typography.caption.copyWith(
+                                fontSize: 11,
+                                color: theme.colors.onSurface
+                                    .withValues(alpha: 0.5))),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(width: theme.spacing.lg),
               Expanded(
+                flex: 3,
                 child: KitoCheckoutPlaceOrderButton(
                   state: state,
                   title: buttonTitle,

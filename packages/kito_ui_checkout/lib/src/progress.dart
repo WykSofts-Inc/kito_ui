@@ -79,17 +79,25 @@ class KitoCheckoutProgress extends StatelessWidget {
     );
   }
 
-  Widget _dots(BuildContext context) {
+  Widget _dots(BuildContext context) =>
+      LayoutBuilder(builder: (context, c) => _dotsRow(context, c.maxWidth));
+
+  Widget _dotsRow(BuildContext context, double maxWidth) {
     final theme = context.kito;
     final accent = theme.accent(tint);
     final onAccent = theme.onAccent(tint);
+    final n = _steps.length;
+    // Each step gets up to 64 points, leaving at least 8 for every connector.
+    final slot = n == 0 || !maxWidth.isFinite
+        ? 64.0
+        : ((maxWidth - (n - 1) * 8) / n).clamp(36.0, 64.0);
     final children = <Widget>[];
     for (var i = 0; i < _steps.length; i++) {
       final step = _steps[i];
       final done = i < _index;
       final active = i == _index;
       children.add(SizedBox(
-        width: 64,
+        width: slot,
         child: Semantics(
           container: true,
           button: done && onStepTap != null,
