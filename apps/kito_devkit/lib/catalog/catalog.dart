@@ -6,15 +6,18 @@ import 'package:flutter/material.dart';
 import '../kits/buttons_gallery.dart';
 import '../kits/calendar_gallery.dart';
 import '../kits/charts_gallery.dart';
+import '../kits/checkout_gallery.dart';
 import '../kits/core_gallery.dart';
 import '../kits/empty_states_gallery.dart';
 import '../kits/fields_gallery.dart';
 import '../kits/formatting_gallery.dart';
 import '../kits/haptics_gallery.dart';
 import '../kits/loaders_gallery.dart';
+import '../kits/maps_gallery.dart';
 import '../kits/modals_gallery.dart';
 import '../kits/navigation_gallery.dart';
 import '../kits/onboarding_gallery.dart';
+import '../kits/scanner_gallery.dart';
 import '../kits/toasts_gallery.dart';
 import '../kits/validation_gallery.dart';
 
@@ -120,6 +123,9 @@ abstract final class KitCatalog {
     navigationKit,
     onboardingKit,
     calendarKit,
+    checkoutKit,
+    mapsKit,
+    scannerKit,
   ];
 
   static const List<UpcomingKit> upcoming = [
@@ -130,10 +136,6 @@ abstract final class KitCatalog {
         KitCategory.communication),
     UpcomingKit(
         'Wallet Cards', Icons.credit_card_rounded, KitCategory.commerce),
-    UpcomingKit(
-        'Checkout', Icons.shopping_cart_checkout_rounded, KitCategory.commerce),
-    UpcomingKit('Maps', Icons.map_rounded, KitCategory.device),
-    UpcomingKit('Scanner', Icons.qr_code_scanner_rounded, KitCategory.device),
   ];
 
   static int get sampleCount => kits.fold(0, (sum, k) => sum + k.sampleCount);

@@ -8,8 +8,12 @@ import 'package:kito_devkit/catalog/catalog.dart';
 import 'package:kito_devkit/gallery/gallery.dart';
 import 'package:kito_devkit/main.dart';
 import 'package:kito_devkit/settings/settings_page.dart';
+import 'package:kito_ui_maps/kito_ui_maps.dart';
 
 void main() {
+  // Maps in the galleries draw a plain backdrop instead of downloading tiles.
+  setUpAll(() => KitoMap.debugTilesOverride = const KitoMapTiles.none());
+
   testWidgets('home shows the header, the kits and the roadmap',
       (tester) async {
     tester.view.physicalSize = const Size(1170, 2532);

@@ -15,15 +15,18 @@ dependencies:
   kito_ui_buttons: ^0.1.0
   kito_ui_calendar: ^0.1.0
   kito_ui_charts: ^0.1.0
+  kito_ui_checkout: ^0.1.0
   kito_ui_core: ^0.1.0
   kito_ui_empty_states: ^0.1.0
   kito_ui_fields: ^0.1.0
   kito_ui_formatting: ^0.1.0
   kito_ui_haptics: ^0.1.0
   kito_ui_loaders: ^0.1.0
+  kito_ui_maps: ^0.1.0
   kito_ui_modals: ^0.1.0
   kito_ui_navigation: ^0.1.0
   kito_ui_onboarding: ^0.1.0
+  kito_ui_scanner: ^0.1.0
   kito_ui_toasts: ^0.1.0
   kito_ui_validation: ^0.1.0
 
