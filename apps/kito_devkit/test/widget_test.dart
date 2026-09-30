@@ -5,7 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kito_devkit/app/settings.dart';
 import 'package:kito_devkit/app/toasts.dart';
 import 'package:kito_devkit/catalog/catalog.dart';
+import 'package:kito_devkit/gallery/gallery.dart';
 import 'package:kito_devkit/main.dart';
+import 'package:kito_devkit/settings/settings_page.dart';
 
 void main() {
   testWidgets('home shows the header, the kits and the roadmap',
@@ -32,12 +34,12 @@ void main() {
       for (final kit in KitCatalog.kits) {
         for (final section in kit.sections) {
           for (final sample in section.samples) {
+            // Render inside the real detail page so container issues
+            // (like ListTiles missing a Material) surface here.
             await tester.pumpWidget(MaterialApp(
               home: Directionality(
                 textDirection: direction,
-                child: Scaffold(
-                    body: SingleChildScrollView(
-                        child: Builder(builder: sample.builder))),
+                child: SampleDetailPage(kit: kit, sample: sample),
               ),
             ));
             await tester.pump(const Duration(milliseconds: 50));
@@ -46,6 +48,20 @@ void main() {
           }
         }
       }
+    }
+  });
+
+  testWidgets('settings opens cleanly in every theme', (tester) async {
+    for (final choice in ThemeChoice.values) {
+      final settings = AppSettings()..theme = choice;
+      await tester.pumpWidget(KitoDevKitApp(settings: settings));
+      await tester.pump();
+      tester
+          .state<NavigatorState>(find.byType(Navigator).first)
+          .push(MaterialPageRoute<void>(builder: (_) => const SettingsPage()));
+      await tester.pumpAndSettle();
+      expect(find.text('Settings'), findsWidgets);
+      expect(tester.takeException(), isNull, reason: choice.name);
     }
   });
 

@@ -167,7 +167,9 @@ class SampleDetailPage extends StatelessWidget {
           KitoSurface(
             border: true,
             padding: const EdgeInsets.all(24),
-            child: Center(child: Builder(builder: sample.builder)),
+            child: Material(
+                type: MaterialType.transparency,
+                child: Center(child: Builder(builder: sample.builder))),
           ),
           const SizedBox(height: 24),
           CodeBlock(
