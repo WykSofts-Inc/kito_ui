@@ -250,51 +250,62 @@ class KitoWalletPocket extends StatelessWidget {
                       stitch: stitch,
                       shadow: true),
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 38, 20, 20),
+                    padding: EdgeInsets.fromLTRB(
+                        20,
+                        math.min(38, pocketHeight * 0.2),
+                        20,
+                        math.min(20, pocketHeight * 0.1)),
                     child: Column(
                       children: [
-                        Text(title.toUpperCase(),
-                            style: theme.typography.caption.copyWith(
-                                color: secondary,
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: 1.4)),
-                        const SizedBox(height: 6),
-                        Semantics(
-                          container: true,
-                          liveRegion: true,
-                          label: isRevealed
-                              ? '$title ${KitoWalletMoney.format(total, currency)}'
-                              : '$title hidden',
-                          excludeSemantics: true,
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: TweenAnimationBuilder<double>(
-                              tween: Tween(end: isRevealed ? total : 0),
-                              duration: KitoMotion.of(
-                                  context, const Duration(milliseconds: 900)),
-                              curve: Curves.easeOutCubic,
-                              builder: (context, value, _) => AnimatedSwitcher(
-                                duration:
-                                    KitoMotion.of(context, theme.motion.fast),
-                                child: Text(
-                                  isRevealed || value > 0.5
-                                      ? KitoWalletMoney.format(value, currency)
-                                      : '••••••',
-                                  key: ValueKey(isRevealed || value > 0.5),
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                      color: style.foreground,
-                                      fontSize: 40,
-                                      fontWeight: FontWeight.w800,
-                                      fontFeatures: const [
-                                        FontFeature.tabularFigures()
-                                      ]),
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(title.toUpperCase(),
+                              maxLines: 1,
+                              style: theme.typography.caption.copyWith(
+                                  color: secondary,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 1.4)),
+                        ),
+                        const SizedBox(height: 4),
+                        Expanded(
+                          child: Semantics(
+                            container: true,
+                            liveRegion: true,
+                            label: isRevealed
+                                ? '$title ${KitoWalletMoney.format(total, currency)}'
+                                : '$title hidden',
+                            excludeSemantics: true,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: TweenAnimationBuilder<double>(
+                                tween: Tween(end: isRevealed ? total : 0),
+                                duration: KitoMotion.of(
+                                    context, const Duration(milliseconds: 900)),
+                                curve: Curves.easeOutCubic,
+                                builder: (context, value, _) =>
+                                    AnimatedSwitcher(
+                                  duration:
+                                      KitoMotion.of(context, theme.motion.fast),
+                                  child: Text(
+                                    isRevealed || value > 0.5
+                                        ? KitoWalletMoney.format(
+                                            value, currency)
+                                        : '••••••',
+                                    key: ValueKey(isRevealed || value > 0.5),
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                        color: style.foreground,
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.w800,
+                                        fontFeatures: const [
+                                          FontFeature.tabularFigures()
+                                        ]),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                        const Spacer(),
                         _PocketButton(
                           label: isRevealed ? hideLabel : showLabel,
                           icon: isRevealed
@@ -365,9 +376,13 @@ class _PocketButton extends StatelessWidget {
                         Icon(icon, key: ValueKey(icon), size: 18, color: color),
                   ),
                   const SizedBox(width: 8),
-                  Text(label,
-                      style: theme.typography.label
-                          .copyWith(color: color, fontWeight: FontWeight.w600)),
+                  Flexible(
+                    child: Text(label,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.typography.label.copyWith(
+                            color: color, fontWeight: FontWeight.w600)),
+                  ),
                 ],
               ),
             ),
